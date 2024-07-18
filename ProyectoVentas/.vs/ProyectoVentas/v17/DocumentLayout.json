@@ -1,54 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAgwEYAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T17:23:23.061Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserModel.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\UserModel.cs",
-              "RelativeDocumentMoniker": "Models\\UserModel.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\UserModel.cs",
-              "RelativeToolTip": "Models\\UserModel.cs",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAkwIcAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T17:20:56.53Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
