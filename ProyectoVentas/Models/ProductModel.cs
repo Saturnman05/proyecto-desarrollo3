@@ -7,7 +7,7 @@ namespace ProyectoVentas.Models
         public int ProductId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public string? ImagePath { get; set; }
+        public string? ImageUrl { get; set; }
         public decimal UnitPrice { get; set; }
         public int Stock { get; set; }
         public DateTime DateCreated { get; set; }
@@ -30,7 +30,7 @@ namespace ProyectoVentas.Models
                 // Parámetros del stored procedure
                 cmd.Parameters.AddWithValue("pp_name", product.Name);
                 cmd.Parameters.AddWithValue("pp_description", product.Description);
-                cmd.Parameters.AddWithValue("pp_product_image", product.ImagePath);
+                cmd.Parameters.AddWithValue("pp_product_image", product.ImageUrl);
                 cmd.Parameters.AddWithValue("pp_unit_price", product.UnitPrice);
                 cmd.Parameters.AddWithValue("pp_stock", product.Stock);
                 cmd.Parameters.AddWithValue("pp_date_created", product.DateCreated);
@@ -72,7 +72,7 @@ namespace ProyectoVentas.Models
                         ProductId = Convert.ToInt32(reader["product_id"].ToString()),
                         Name = reader["name"].ToString(),
                         Description = reader["description"].ToString(),
-                        ImagePath = reader["image_url"].ToString(),
+                        ImageUrl = reader["image_url"].ToString(),
                         UnitPrice = Convert.ToDecimal(reader["unit_price"].ToString()),
                         Stock = Convert.ToInt32(reader["stock"].ToString()),
                         DateCreated = Convert.ToDateTime(reader["date_created"].ToString())
@@ -113,7 +113,7 @@ namespace ProyectoVentas.Models
                 {
                     product.Name = reader["name"].ToString();
                     product.Description = reader["description"].ToString();
-                    product.ImagePath = reader["image_url"].ToString();
+                    product.ImageUrl = reader["image_url"].ToString();
                     product.UnitPrice = Convert.ToDecimal(reader["unit_price"].ToString());
                     product.Stock = Convert.ToInt32(reader["stock"].ToString());
                     product.DateCreated = Convert.ToDateTime(reader["date_created"].ToString());
@@ -147,7 +147,7 @@ namespace ProyectoVentas.Models
                 cmd.Parameters.AddWithValue("pp_product_id", product.ProductId);
                 cmd.Parameters.AddWithValue("pp_name", product.Name);
                 cmd.Parameters.AddWithValue("pp_description", product.Description);
-                cmd.Parameters.AddWithValue("pp_product_image", product.ImagePath);
+                cmd.Parameters.AddWithValue("pp_product_image", product.ImageUrl);
                 cmd.Parameters.AddWithValue("pp_unit_price", product.UnitPrice);
                 cmd.Parameters.AddWithValue("pp_stock", product.Stock);
                 cmd.Parameters.AddWithValue("pp_date_created", product.DateCreated);
