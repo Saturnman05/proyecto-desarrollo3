@@ -75,3 +75,18 @@ create table factura_producto (
     foreign key (factura_id) references facturas(factura_id),
     foreign key (product_id) references productos(product_id)
 );
+
+create table carrito (
+	carrito_id int,
+    user_id int not null,
+    primary key (carrito_id),
+    foreign key (user_id) references usuarios(user_id)
+);
+
+create table carrito_producto (
+	carrito_id int,
+    product_id int,
+    primary key (carrito_id, product_id),
+    foreign key (carrito_id) references carrito(carrito_id),
+    foreign key (product_id) references productos(product_id)
+);
