@@ -13,32 +13,62 @@ namespace ProyectoVentas.Controllers
         [HttpGet]
         public List<UserModel> Get()
         {
-            return new List<UserModel>();
+            return UserModel.GetAllUsers();
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public UserModel Get(int id)
         {
-            return "value";
+            return UserModel.GetUser(id);
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] UserModel user)
         {
+            try
+            {
+                UserModel.CreateUser(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"No se pudo crear el usuario. {ex.Message}");
+            }
+
+            return Ok("Se creo el usuario exitosamente.");
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] UserModel user)
         {
+            try
+            {
+                UserModel.UpdateUser(user);
+            }
+            catch (Exception)
+            {
+                return BadRequest("No se pudieron actualizar los datos del usuario.");
+            }
+
+            return Ok();
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            try
+            {
+                UserModel.DeleteUser(id);
+            }
+            catch (Exception)
+            {
+                return BadRequest("No se pudo eliminar el usuario");
+            }
+
+            return Ok("Se elimino el usuario correctamente.");
         }
     }
 }

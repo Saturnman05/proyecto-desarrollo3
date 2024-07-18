@@ -62,6 +62,7 @@ namespace ProyectoVentas.Models
 
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_product_id", null);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 
@@ -101,7 +102,7 @@ namespace ProyectoVentas.Models
 
             try
             {
-                string procedureName = "ppSelectProduct";
+                string procedureName = "ppSelectProducts";
 
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -121,7 +122,7 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
-                throw new Exception($"No se pudo encontrar el producto con id = {productId} . {ex.Message}");
+                throw new Exception($"No se pudo encontrar el producto con id = {productId}. {ex.Message}");
             }
 
             return product;
