@@ -10,7 +10,6 @@ namespace ProyectoVentas.Models
         public int ActionId {  get; set; } = -1;
         public string ActionName { get; set; }
 
-        // TODO: create action
         public static void CreateAction(string actionName)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -40,7 +39,6 @@ namespace ProyectoVentas.Models
             con.Close();
         }
 
-        // TODO: create rol
         public static void CreateRol(string rolName)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -70,7 +68,6 @@ namespace ProyectoVentas.Models
             con.Close();
         }
 
-        // TODO: añadirle acciones a un rol
         public static void CreateRolAction(RolActionsModel rolAction)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -138,5 +135,45 @@ namespace ProyectoVentas.Models
 
             con.Close();
         }
+
+        // TODO: Get roles
+        public static List<RolActionsModel> GetRoles()
+        {
+            List<RolActionsModel> roles = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            MySqlTransaction tran = con.BeginTransaction();
+
+            try
+            {
+                string procedureName = "ppSelectRoles";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_rol_id", null);
+
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    RolActionsModel rol = new()
+                    {
+                        RolId = Convert.ToInt32(reader["rol_id"].ToString()),
+                        RolName = reader["rol_name"].ToString()
+                    };
+                }
+
+                tran.Commit();
+            }
+            catch (Exception)
+            {
+                tran.Rollback();
+                throw new Exception("No se pudieron seleccionar los roles.");
+            }
+
+            return roles;
+        }
+
+        // TODO: Get actions
     }
 }
