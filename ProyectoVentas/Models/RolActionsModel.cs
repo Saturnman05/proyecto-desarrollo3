@@ -144,8 +144,6 @@ namespace ProyectoVentas.Models
             using MySqlConnection con = new(Program.connectionString);
             con.Open();
 
-            MySqlTransaction tran = con.BeginTransaction();
-
             try
             {
                 string procedureName = "ppSelectRoles";
@@ -162,12 +160,9 @@ namespace ProyectoVentas.Models
                         RolName = reader["rol_name"].ToString()
                     };
                 }
-
-                tran.Commit();
             }
             catch (Exception)
             {
-                tran.Rollback();
                 throw new Exception("No se pudieron seleccionar los roles.");
             }
 
@@ -175,5 +170,38 @@ namespace ProyectoVentas.Models
         }
 
         // TODO: Get actions
+        public static List<RolActionsModel> GetActions()
+        {
+            List<RolActionsModel> actions = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string procedureName = "ppSelectActions";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_action_id", null);
+
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    RolActionsModel action = new()
+                    {
+                        ActionId = Convert.ToInt32(reader["action_id"].ToString()),
+                        ActionName = reader["action_name"].ToString()
+                    };
+
+                    actions.Add(action);
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("No se pudo obtener las acciones.");
+            }
+
+            return actions;
+        }
     }
 }
