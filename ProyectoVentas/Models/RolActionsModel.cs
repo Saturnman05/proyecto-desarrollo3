@@ -203,10 +203,9 @@ namespace ProyectoVentas.Models
             return actions;
         }
 
-        // TODO: Get rol id by name
         public static int GetRolId(string rolName)
         {
-            int rolId = 0;
+            int rolId = -1;
 
             using MySqlConnection con = new(Program.connectionString);
             con.Open();
@@ -227,7 +226,6 @@ namespace ProyectoVentas.Models
             return rolId;
         }
 
-        // TODO: Get action id by name
         public static int GetActionId(string actionName)
         {
             int actionId = 0;
@@ -252,7 +250,60 @@ namespace ProyectoVentas.Models
         }
 
         // TODO: Get rol by id
+        public static RolActionsModel GetRolById(int rolId) {
+            RolActionsModel rol = new() { RolId = rolId };
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string procedureName = "ppSelectRoles";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_rol_id", rolId);
+
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    rol.RolName = reader["rol_name"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"No se pudo obtener el rol de id = {rolId}", ex);
+            }
+
+            return rol;
+        }
 
         // TODO: Get action by id
+        public static RolActionsModel GetActionById(int actionId)
+        {
+            RolActionsModel action = new() { ActionId = actionId };
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string procedureName = "ppSelectActions";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_action_id", actionId);
+
+                using MySqlDataReader r = cmd.ExecuteReader();
+                if (r.Read())
+                {
+                    action.ActionName = r["action_name"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"No se pudo obtener el action de id = {actionId}", ex);
+            }
+
+            return action;
+        }
     }
 }
