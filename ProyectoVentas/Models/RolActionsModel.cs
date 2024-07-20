@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Security.Policy;
 
 namespace ProyectoVentas.Models
 {
@@ -136,7 +137,6 @@ namespace ProyectoVentas.Models
             con.Close();
         }
 
-        // TODO: Get roles
         public static List<RolActionsModel> GetRoles()
         {
             List<RolActionsModel> roles = new();
@@ -169,7 +169,6 @@ namespace ProyectoVentas.Models
             return roles;
         }
 
-        // TODO: Get actions
         public static List<RolActionsModel> GetActions()
         {
             List<RolActionsModel> actions = new();
@@ -203,5 +202,57 @@ namespace ProyectoVentas.Models
 
             return actions;
         }
+
+        // TODO: Get rol id by name
+        public static int GetRolId(string rolName)
+        {
+            int rolId = 0;
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string funcName = "SELECT fnSelectRolId(pprolName)";
+                using MySqlCommand cmd = new(funcName, con);
+                cmd.Parameters.AddWithValue("pprolName", rolName);
+
+                rolId = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo obtener el id.", ex);
+            }
+
+            return rolId;
+        }
+
+        // TODO: Get action id by name
+        public static int GetActionId(string actionName)
+        {
+            int actionId = 0;
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string funcName = "SELECT fnSelectActionId(ppactionName)";
+                using MySqlCommand cmd = new(funcName, con);
+                cmd.Parameters.AddWithValue("ppactionName", actionName);
+
+                actionId = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo obtener el id.", ex);
+            }
+
+            return actionId;
+        }
+
+        // TODO: Get rol by id
+
+        // TODO: Get action by id
     }
 }
