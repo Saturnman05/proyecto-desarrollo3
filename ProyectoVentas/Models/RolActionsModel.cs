@@ -157,8 +157,12 @@ namespace ProyectoVentas.Models
                     RolActionsModel rol = new()
                     {
                         RolId = Convert.ToInt32(reader["rol_id"].ToString()),
-                        RolName = reader["rol_name"].ToString()
+                        RolName = reader["rol_name"].ToString(),
+                        ActionId = 0,
+                        ActionName = "null"
                     };
+
+                    roles.Add(rol);
                 }
             }
             catch (Exception)
@@ -212,11 +216,19 @@ namespace ProyectoVentas.Models
 
             try
             {
-                string funcName = "SELECT fnSelectRolId(pprolName)";
+                string funcName = "SELECT fnSelectRolId(@rolName)";
                 using MySqlCommand cmd = new(funcName, con);
-                cmd.Parameters.AddWithValue("pprolName", rolName);
+                cmd.Parameters.AddWithValue("@rolName", rolName);
 
-                rolId = Convert.ToInt32(cmd.ExecuteScalar());
+                var result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    rolId = Convert.ToInt32(result);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Error en la base de datos al obtener el ID del rol.", ex);
             }
             catch (Exception ex)
             {
@@ -235,9 +247,9 @@ namespace ProyectoVentas.Models
 
             try
             {
-                string funcName = "SELECT fnSelectActionId(ppactionName)";
+                string funcName = "SELECT fnSelectActionId(@actionName)";
                 using MySqlCommand cmd = new(funcName, con);
-                cmd.Parameters.AddWithValue("ppactionName", actionName);
+                cmd.Parameters.AddWithValue("@actionName", actionName);
 
                 actionId = Convert.ToInt32(cmd.ExecuteScalar());
             }
@@ -267,6 +279,8 @@ namespace ProyectoVentas.Models
                 if (reader.Read())
                 {
                     rol.RolName = reader["rol_name"].ToString();
+                    rol.ActionId = 0;
+                    rol.ActionName = "null";
                 }
             }
             catch (Exception ex)
