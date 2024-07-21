@@ -15,7 +15,6 @@ namespace ProyectoVentas.Models
         public DateTime DateCreated { get; set; }
         public DateTime LastLogin { get; set; }
 
-        // TODO: Get all users
         public static List<UserModel> GetAllUsers()
         {
             List<UserModel> users = new();
@@ -54,13 +53,14 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
+                con.Close();
                 throw new Exception($"No se pudo hacer el SELECT de los usuario. {ex.Message}");
             }
 
+            con.Close();
             return users;
         }
 
-        // TODO: Get users by id
         public static UserModel GetUser(int userId)
         {
             UserModel user = new() { UserId = userId };
@@ -91,13 +91,14 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
+                con.Close();
                 throw new Exception($"No se pudo encontrar el usuario con id={userId}. {ex.Message}");
             }
 
+            con.Close();
             return user;
         }
 
-        // TODO: Post user
         public static void CreateUser(UserModel user)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -128,11 +129,13 @@ namespace ProyectoVentas.Models
             catch (Exception ex)
             {
                 transaction.Rollback();
+                con.Close();
                 throw new Exception($"Se hizo rollback de la transacción. {ex.Message}");
             }
+
+            con.Close();
         }
 
-        // TODO: Put user
         public static void UpdateUser(UserModel user)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -163,11 +166,13 @@ namespace ProyectoVentas.Models
             catch (Exception ex)
             {
                 transaction.Rollback();
+                con.Close();
                 throw new Exception($"Se hizo rollback de la transacción. {ex.Message}");
             }
+
+            con.Close();
         }
 
-        // TODO: Delete user
         public static void DeleteUser(int userId)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -190,8 +195,11 @@ namespace ProyectoVentas.Models
             catch (Exception ex)
             {
                 transaction.Rollback();
+                con.Close();
                 throw new Exception($"No se pudo eliminar el usuario con id={userId}. {ex.Message}");
             }
+
+            con.Close();
         }
     }
 }

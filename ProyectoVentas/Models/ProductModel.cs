@@ -43,11 +43,13 @@ namespace ProyectoVentas.Models
             catch (Exception ex)
             {
                 transaction.Rollback();
+                con.Close();
                 throw new Exception($"Se hizo rollback de la transacción. {ex.Message}");
             }
+
+            con.Close();
         }
 
-        // TODO: Get All
         public static List<ProductModel> GetAllProducts()
         {
             List<ProductModel> products = new();
@@ -85,13 +87,14 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
+                con.Close();
                 throw new Exception($"No se pudo hacer el SELECT. {ex.Message}");
             }
 
+            con.Close();
             return products;
         }
 
-        // TODO: Get by id
         public static ProductModel GetProduct(int productId)
         {
             ProductModel product = new() { ProductId = productId };
@@ -122,13 +125,14 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
+                con.Close();
                 throw new Exception($"No se pudo encontrar el producto con id = {productId}. {ex.Message}");
             }
 
+            con.Close();
             return product;
         }
 
-        // TODO: Put
         public static void UpdateProduct(ProductModel product)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -161,11 +165,13 @@ namespace ProyectoVentas.Models
             catch (Exception ex)
             {
                 transaction.Rollback();
+                con.Close();
                 throw new Exception($"Se hizo rollback de la transacción. {ex.Message}");
             }
+
+            con.Close();
         }
 
-        // TODO: Delete
         public static void DeleteProduct(int productId)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -189,8 +195,11 @@ namespace ProyectoVentas.Models
             catch (Exception ex)
             {
                 transaction.Rollback();
+                con.Close();
                 throw new Exception($"No se pudo eliminar el producto con id={productId}. {ex.Message}");
             }
+
+            con.Close();
         }
     }
 }
