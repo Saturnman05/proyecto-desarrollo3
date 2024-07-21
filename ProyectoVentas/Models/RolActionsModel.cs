@@ -131,6 +131,7 @@ namespace ProyectoVentas.Models
             }
             catch (Exception)
             {
+                con.Close();
                 transaction.Rollback();
             }
 
@@ -167,9 +168,11 @@ namespace ProyectoVentas.Models
             }
             catch (Exception)
             {
+                con.Close();
                 throw new Exception("No se pudieron seleccionar los roles.");
             }
 
+            con.Close();
             return roles;
         }
 
@@ -201,9 +204,11 @@ namespace ProyectoVentas.Models
             }
             catch (Exception)
             {
+                con.Close();
                 throw new Exception("No se pudo obtener las acciones.");
             }
 
+            con.Close();
             return actions;
         }
 
@@ -228,13 +233,16 @@ namespace ProyectoVentas.Models
             }
             catch (MySqlException ex)
             {
+                con.Close();
                 throw new Exception("Error en la base de datos al obtener el ID del rol.", ex);
             }
             catch (Exception ex)
             {
+                con.Close();
                 throw new Exception("No se pudo obtener el id.", ex);
             }
 
+            con.Close();
             return rolId;
         }
 
@@ -255,13 +263,14 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
+                con.Close();
                 throw new Exception("No se pudo obtener el id.", ex);
             }
 
+            con.Close();
             return actionId;
         }
 
-        // TODO: Get rol by id
         public static RolActionsModel GetRolById(int rolId) {
             RolActionsModel rol = new() { RolId = rolId };
 
@@ -285,13 +294,14 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
+                con.Close();
                 throw new Exception($"No se pudo obtener el rol de id = {rolId}", ex);
             }
 
+            con.Close();
             return rol;
         }
 
-        // TODO: Get action by id
         public static RolActionsModel GetActionById(int actionId)
         {
             RolActionsModel action = new() { ActionId = actionId };
@@ -314,10 +324,42 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
+                con.Close();
                 throw new Exception($"No se pudo obtener el action de id = {actionId}", ex);
             }
 
+            con.Close();
             return action;
+        }
+
+        // TODO: Set action to rol
+        public static void SetActionToRol(int rolId, int actionId)
+        {
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            MySqlTransaction tran = con.BeginTransaction();
+
+            try
+            {
+                string procedureName = "ppInsertRolAction";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_rol_id", rolId);
+                cmd.Parameters.AddWithValue("pp_action_id", actionId);
+
+                cmd.ExecuteNonQuery();
+
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                con.Close();
+                throw new Exception("No se pudo realizar la transacción.", ex);
+            }
+
+            con.Clone();
         }
     }
 }
