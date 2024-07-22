@@ -11,16 +11,16 @@ namespace ProyectoVentas.Controllers
     {
         // GET: api/<RolesController>
         [HttpGet]
-        public IEnumerable<RolActionsModel> Get()
+        public IEnumerable<RolModel> Get()
         {
-            return RolActionsModel.GetRoles();
+            return RolModel.GetRoles();
         }
 
         // GET api/<RolesController>/5
         [HttpGet("byid/{id:int}")]
-        public RolActionsModel Get(int id)
+        public RolModel Get(int id)
         {
-            return RolActionsModel.GetRolById(id);
+            return RolModel.GetRolById(id);
         }
 
         // GET api/<RolesController>/"administrador"
@@ -48,7 +48,7 @@ namespace ProyectoVentas.Controllers
         {
             try
             {
-                RolActionsModel.CreateRol(value);
+                RolModel.CreateRol(value);
             }
             catch (Exception ex)
             {
