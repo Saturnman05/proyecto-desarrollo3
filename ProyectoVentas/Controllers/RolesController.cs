@@ -29,7 +29,7 @@ namespace ProyectoVentas.Controllers
         {
             try
             {
-                int rolId = RolActionsModel.GetRolId(name);
+                int rolId = RolModel.GetRolId(name);
                 if (rolId == -1)
                 {
                     return NotFound($"Role with name '{name}' not found.");

@@ -1,5 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System.Security.Policy;
 
 namespace ProyectoVentas.Models
 {
@@ -7,9 +6,6 @@ namespace ProyectoVentas.Models
     {
         public int RolId { get; set; } = -1;
         public string RolName { get; set; }
-
-        //public int ActionId {  get; set; } = -1;
-        //public string ActionName { get; set; }
 
         public static void CreateRol(string rolName)
         {
@@ -40,6 +36,7 @@ namespace ProyectoVentas.Models
             con.Close();
         }
 
+        #region CreateRolAction
         //public static void CreateRolAction(RolModel rolAction)
         //{
         //    using MySqlConnection con = new(Program.connectionString);
@@ -87,7 +84,7 @@ namespace ProyectoVentas.Models
         //    }
 
         //    MySqlTransaction transaction = con.BeginTransaction();
-            
+
         //    try
         //    {
         //        string procedureName = "ppInsertRolAction";
@@ -108,6 +105,7 @@ namespace ProyectoVentas.Models
 
         //    con.Close();
         //}
+        #endregion
 
         public static List<RolModel> GetRoles()
         {
