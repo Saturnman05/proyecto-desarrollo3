@@ -70,5 +70,17 @@ namespace ProyectoVentas.Controllers
 
             return Ok("Se elimino el usuario correctamente.");
         }
+
+        [HttpPost("login")]
+        public ActionResult<UserModel> Login([FromBody] LoginRequest request)
+        {
+            var user = UserModel.LogIn(request.Username, request.Password);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(user);
+        }
     }
 }

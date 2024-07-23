@@ -3,10 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BFF2A301-90D0-4E51-B3A3-6148222FDFD3}|..\\CoreForms\\CoreForms.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\coreforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BFF2A301-90D0-4E51-B3A3-6148222FDFD3}|..\\CoreForms\\CoreForms.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\coreforms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\models\\rolmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,27 +31,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\CoreForms\\Form1.cs",
-              "RelativeDocumentMoniker": "..\\CoreForms\\Form1.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\CoreForms\\Form1.cs",
-              "RelativeToolTip": "..\\CoreForms\\Form1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "Models\\UserModel.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\UserModel.cs",
+              "RelativeToolTip": "Models\\UserModel.cs",
+              "ViewState": "AQIAANQAAAAAAAAAAAAjwOMAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T16:11:42.941Z",
+              "WhenOpened": "2024-07-23T04:57:03.245Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\CoreForms\\Form1.cs",
-              "RelativeDocumentMoniker": "..\\CoreForms\\Form1.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\CoreForms\\Form1.cs [Design]",
-              "RelativeToolTip": "..\\CoreForms\\Form1.cs [Design]",
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Controllers\\UsersController.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAQwEsAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T15:56:04.671Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-07-22T22:20:57.777Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -59,10 +62,9 @@
               "RelativeDocumentMoniker": "Models\\RolModel.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\RolModel.cs",
               "RelativeToolTip": "Models\\RolModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAdAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T15:54:25.627Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-22T15:54:25.627Z"
             },
             {
               "$type": "Document",

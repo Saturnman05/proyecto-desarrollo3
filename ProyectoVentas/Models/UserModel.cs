@@ -201,5 +201,47 @@ namespace ProyectoVentas.Models
 
             con.Close();
         }
+
+        public static UserModel LogIn(string username, string password)
+        {
+            UserModel user = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string procedureName = "ppLogInUser";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_username", username);
+                cmd.Parameters.AddWithValue("pp_password", password);
+
+                var reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    user.UserId = Convert.ToInt32(reader["user_id"].ToString());
+                    user.UserName = reader["username"].ToString();
+                    user.Password = reader["password"].ToString();
+                    user.Email = reader["email"].ToString();
+                    user.RolId = Convert.ToInt32(reader["rol_id"].ToString());
+                    user.RolName = reader["rol_name"].ToString();
+                    user.DateCreated = Convert.ToDateTime(reader["date_created"].ToString());
+                    user.LastLogin = DateTime.Now;
+                    user.FullName = reader["full_name"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                throw new Exception("No se pudo hacer inicio de sesión.", ex);
+            }
+
+            con.Close();
+
+            UpdateUser(user);
+
+            return user;
+        }
     }
 }
