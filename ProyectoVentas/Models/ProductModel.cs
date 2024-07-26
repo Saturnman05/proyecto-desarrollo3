@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace ProyectoVentas.Models
 {
@@ -65,6 +66,7 @@ namespace ProyectoVentas.Models
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_product_id", null);
+                cmd.Parameters.AddWithValue("pp_name", null);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 
@@ -110,6 +112,7 @@ namespace ProyectoVentas.Models
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_product_id", productId);
+                cmd.Parameters.AddWithValue("pp_name", null);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -130,6 +133,40 @@ namespace ProyectoVentas.Models
             }
 
             con.Close();
+            return product;
+        }
+
+        public static ProductModel GetProudctByName(string productName)
+        {
+            ProductModel product = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                using MySqlCommand cmd = new("ppSelectProducts", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_product_id", null);
+                cmd.Parameters.AddWithValue("pp_name", productName);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    product.ProductId = Convert.ToInt32(reader["product_id"].ToString());
+                    product.Name = reader["name"].ToString();
+                    product.Description = reader["description"].ToString();
+                    product.ImageUrl = reader["image_url"].ToString();
+                    product.UnitPrice = Convert.ToDecimal(reader["unit_price"].ToString());
+                    product.Stock = Convert.ToInt32(reader["stock"].ToString());
+                    product.DateCreated = Convert.ToDateTime(reader["date_created"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo obtener el producto", ex);
+            }
+
             return product;
         }
 
