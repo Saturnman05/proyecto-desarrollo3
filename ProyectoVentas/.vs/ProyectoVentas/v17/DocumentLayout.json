@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\models\\facturamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\facturamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,11 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FacturasController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\FacturasController.cs",
               "RelativeDocumentMoniker": "Controllers\\FacturasController.cs",
@@ -39,13 +39,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "FacturaModel.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\FacturaModel.cs",
               "RelativeDocumentMoniker": "Models\\FacturaModel.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\FacturaModel.cs",
               "RelativeToolTip": "Models\\FacturaModel.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAYwFAAAAA/AAAA",
+              "ViewState": "AQIAANAAAAAAAAAAAAAgwPEAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-24T05:49:14.878Z",
               "EditorCaption": ""

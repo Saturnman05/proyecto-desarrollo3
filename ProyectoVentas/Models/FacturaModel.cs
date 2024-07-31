@@ -119,10 +119,9 @@ namespace ProyectoVentas.Models
             return facturas;
         }
 
-        // TODO: Create factura
         public static int CreateFactura(FacturaModel factura)
         {
-            int newFacturaId;
+            int newFacturaId = 0;
 
             using MySqlConnection con = new(Program.connectionString);
             con.Open();
@@ -131,8 +130,10 @@ namespace ProyectoVentas.Models
 
             try
             {
-                using MySqlCommand cmd = new("ppInsertFactura", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                using MySqlCommand cmd = new("ppInsertFactura", con, tran)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
                 cmd.Parameters.AddWithValue("pp_rnc", factura.Rnc);
                 cmd.Parameters.AddWithValue("pp_total_price", factura.TotalPrice);
@@ -147,12 +148,13 @@ namespace ProyectoVentas.Models
                 cmd.ExecuteNonQuery();
                 newFacturaId = Convert.ToInt32(outputIdParam.Value);
 
-                AddProductosToFactura(con, newFacturaId, factura.Productos);
+                AddProductosToFactura(con, tran, newFacturaId, factura.Productos);
+
+                tran.Commit();
             }
             catch (Exception ex)
             {
                 tran.Rollback();
-                // if newFacturaId != null then delete factura
                 con.Close();
                 throw new Exception("No se pudo crear la factura.", ex);
             }
@@ -161,21 +163,23 @@ namespace ProyectoVentas.Models
             return newFacturaId;
         }
 
-        public static void AddProductosToFactura(MySqlConnection con, int facturaId, List<string> productos)
+        public static void AddProductosToFactura(MySqlConnection con, MySqlTransaction tran, int facturaId, List<string> productos)
         {
             List<ProductModel> products = new();
             foreach (var productName in productos)
             {
                 products.Add(ProductModel.GetProudctByName(productName));
             }
-            
+
             try
             {
                 foreach (var producto in products)
                 {
-                    using MySqlCommand cmd = new("ppAddProductosToFactura", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    
+                    using MySqlCommand cmd = new("ppAddProductosToFactura", con, tran)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
                     cmd.Parameters.AddWithValue("pp_factura_id", facturaId);
                     cmd.Parameters.AddWithValue("pp_product_id", producto.ProductId);
                     cmd.Parameters.AddWithValue("pp_product_amount", producto.Stock);
@@ -189,6 +193,7 @@ namespace ProyectoVentas.Models
                 throw new Exception("No se pudo añadir productos a la factura.", ex);
             }
         }
+
 
         // TODO: Update factura
 
