@@ -45,17 +45,80 @@ namespace ProyectoVentas.Models
             }
             catch (Exception ex)
             {
-
+                con.Close();
                 throw new Exception($"Error al obtener la factura con id = {facturaId}", ex);
             }
 
+            con.Close();
             return factura;
         }
-        
+
         public static List<FacturaModel> GetFacturas()
         {
+            List<FacturaModel> facturas = new();
 
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string procedureName = "ppSelectFacturas";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("pp_factura_id", null);
+                cmd.Parameters.AddWithValue("pp_user_id", null);
+
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                FacturaModel currentFactura = null;
+                int currentFacturaId = -1;
+
+                while (reader.Read())
+                {
+                    int facturaIdFromDb = Convert.ToInt32(reader["factura_id"]);
+
+                    // Si cambiamos de factura o estamos en la primera lectura
+                    if (currentFactura == null || currentFacturaId != facturaIdFromDb)
+                    {
+                        // Añadimos la factura anterior a la lista (si no es la primera lectura)
+                        if (currentFactura != null)
+                        {
+                            facturas.Add(currentFactura);
+                        }
+
+                        // Creamos una nueva factura y actualizamos el ID actual
+                        currentFactura = new FacturaModel
+                        {
+                            FacturaId = facturaIdFromDb,
+                            Rnc = reader["rnc"].ToString(),
+                            EmissionDate = Convert.ToDateTime(reader["emission_date"]),
+                            TotalPrice = Convert.ToDecimal(reader["total_price"]),
+                            UserId = Convert.ToInt32(reader["user_id"]),
+                            Productos = new List<string>()
+                        };
+                        currentFacturaId = facturaIdFromDb;
+                    }
+
+                    // Añadimos el producto a la factura actual
+                    currentFactura.Productos.Add(reader["product_name"].ToString());
+                }
+
+                // Añadimos la última factura leída a la lista
+                if (currentFactura != null)
+                {
+                    facturas.Add(currentFactura);
+                }
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                throw new Exception($"Error al obtener las facturas", ex);
+            }
+
+            con.Close();
+            return facturas;
         }
+
         // TODO: Create factura
         public static int CreateFactura(FacturaModel factura)
         {
@@ -72,7 +135,6 @@ namespace ProyectoVentas.Models
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("pp_rnc", factura.Rnc);
-                cmd.Parameters.AddWithValue("pp_emission_date", factura.EmissionDate);
                 cmd.Parameters.AddWithValue("pp_total_price", factura.TotalPrice);
                 cmd.Parameters.AddWithValue("pp_user_id", factura.UserId);
 
@@ -84,34 +146,34 @@ namespace ProyectoVentas.Models
 
                 cmd.ExecuteNonQuery();
                 newFacturaId = Convert.ToInt32(outputIdParam.Value);
+
+                AddProductosToFactura(con, newFacturaId, factura.Productos);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 tran.Rollback();
-                throw;
+                // if newFacturaId != null then delete factura
+                con.Close();
+                throw new Exception("No se pudo crear la factura.", ex);
             }
 
+            con.Close();
             return newFacturaId;
         }
 
-        public static void AddProductosToFactura(int facturaId, List<string> productos)
+        public static void AddProductosToFactura(MySqlConnection con, int facturaId, List<string> productos)
         {
             List<ProductModel> products = new();
             foreach (var productName in productos)
             {
                 products.Add(ProductModel.GetProudctByName(productName));
             }
-
-            using MySqlConnection con = new(Program.connectionString);
-            con.Open();
-
-            using MySqlTransaction transaction = con.BeginTransaction();
             
             try
             {
                 foreach (var producto in products)
                 {
-                    using MySqlCommand cmd = new("ppAddProductosToFactura", con, transaction);
+                    using MySqlCommand cmd = new("ppAddProductosToFactura", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     
                     cmd.Parameters.AddWithValue("pp_factura_id", facturaId);
@@ -121,12 +183,9 @@ namespace ProyectoVentas.Models
 
                     cmd.ExecuteNonQuery();
                 }
-
-                transaction.Commit();
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
                 throw new Exception("No se pudo añadir productos a la factura.", ex);
             }
         }

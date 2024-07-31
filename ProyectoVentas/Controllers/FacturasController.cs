@@ -11,16 +11,16 @@ namespace ProyectoVentas.Controllers
     {
         // GET: api/<FacturasController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<FacturaModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            return FacturaModel.GetFacturas();
         }
 
         // GET api/<FacturasController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public FacturaModel Get(int id)
         {
-            return "value";
+            return FacturaModel.GetFactura(id);
         }
 
         // POST api/<FacturasController>
@@ -30,26 +30,25 @@ namespace ProyectoVentas.Controllers
             try
             {
                 int facturaId = FacturaModel.CreateFactura(factura);
-                FacturaModel.AddProductosToFactura(facturaId, factura.Productos);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
 
             return Ok();
         }
 
         // PUT api/<FacturasController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<FacturasController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<FacturasController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
