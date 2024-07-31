@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace ProyectoVentas.Models
 {
@@ -201,8 +203,51 @@ namespace ProyectoVentas.Models
 
 
         // TODO: Update factura
+        public static void UpdateFactura(FacturaModel factura)
+        {
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
 
-        // TODO: Delete factura
+            MySqlTransaction tran = con.BeginTransaction();
+
+            try
+            {
+                using MySqlCommand cmd = new("ppUpdateFactura", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("pp_factura_id", factura.FacturaId);
+                cmd.Parameters.AddWithValue("pp_rnc", factura.Rnc);
+                cmd.Parameters.AddWithValue("pp_total_price", factura.TotalPrice);
+                cmd.Parameters.AddWithValue("pp_user_id", factura.UserId);
+
+                List<ProductModel> productosConId = new();
+                foreach (var nombreProducto in factura.Productos)
+                {
+                    // Aquí deberías tener una función que obtenga el ProductId
+                    ProductModel producto = ProductModel.GetProudctByName(nombreProducto);
+                    if (producto != null)
+                    {
+                        productosConId.Add(producto);
+                    }
+                }
+
+                string productosJson = JsonConvert.SerializeObject(productosConId);
+                cmd.Parameters.AddWithValue("pp_productos", productosJson);
+
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw new Exception("Error al actualizar la factura", ex);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         public static void DeleteFactura(int facturaId)
         {
             using MySqlConnection con = new(Program.connectionString);

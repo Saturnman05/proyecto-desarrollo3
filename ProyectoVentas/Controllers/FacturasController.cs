@@ -40,10 +40,20 @@ namespace ProyectoVentas.Controllers
         }
 
         // PUT api/<FacturasController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] FacturaModel factura)
+        {
+            try
+            {
+                FacturaModel.UpdateFactura(factura);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+            return Ok();
+        }
 
         // DELETE api/<FacturasController>/5
         [HttpDelete("{id}")]

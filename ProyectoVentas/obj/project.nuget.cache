@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "C44QESye06WDYE/pRU0sN8XqshxaXQ9Hk0nf43/tLmjcOF+HySmTHuQ7ZsM9+QZA9Nf5eep3X+vaxNznrYb+iw==",
+  "dgSpecHash": "khUk09GQcIfC9/FDloHCG2558TCdnVn6V6YLYVbLTF+AY8iZ0bQvBMru4w6jPtRN7dG4PWa6nc/g0jLH3wvB/w==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\ProyectoVentas.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,7 @@
     "C:\\Users\\user\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\mysql.data\\9.0.0\\mysql.data.9.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",

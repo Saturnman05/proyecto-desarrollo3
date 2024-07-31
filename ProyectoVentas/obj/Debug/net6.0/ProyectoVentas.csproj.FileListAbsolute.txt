@@ -120,3 +120,4 @@ C:\Users\user\Desktop\ProyectoSoftwareIII\ProyectoVentas\obj\Debug\net6.0\refint
 C:\Users\user\Desktop\ProyectoSoftwareIII\ProyectoVentas\obj\Debug\net6.0\ProyectoVentas.pdb
 C:\Users\user\Desktop\ProyectoSoftwareIII\ProyectoVentas\obj\Debug\net6.0\ProyectoVentas.genruntimeconfig.cache
 C:\Users\user\Desktop\ProyectoSoftwareIII\ProyectoVentas\obj\Debug\net6.0\ref\ProyectoVentas.dll
+C:\Users\user\Desktop\ProyectoSoftwareIII\ProyectoVentas\bin\Debug\net6.0\Newtonsoft.Json.dll
