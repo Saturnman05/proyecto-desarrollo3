@@ -45,10 +45,21 @@ namespace ProyectoVentas.Controllers
         //{
         //}
 
-        //// DELETE api/<FacturasController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE api/<FacturasController>/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                FacturaModel.DeleteFactura(id);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+
+            return Ok();
+        }
     }
 }

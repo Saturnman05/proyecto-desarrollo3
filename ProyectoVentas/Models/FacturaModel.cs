@@ -148,7 +148,10 @@ namespace ProyectoVentas.Models
                 cmd.ExecuteNonQuery();
                 newFacturaId = Convert.ToInt32(outputIdParam.Value);
 
-                AddProductosToFactura(con, tran, newFacturaId, factura.Productos);
+                List<ProductModel> products = AddProductosToFactura(con, tran, newFacturaId, factura.Productos);
+
+                // Actualizar la factura para ponerle el precio adecuado
+
 
                 tran.Commit();
             }
@@ -163,7 +166,7 @@ namespace ProyectoVentas.Models
             return newFacturaId;
         }
 
-        public static void AddProductosToFactura(MySqlConnection con, MySqlTransaction tran, int facturaId, List<string> productos)
+        public static List<ProductModel> AddProductosToFactura(MySqlConnection con, MySqlTransaction tran, int facturaId, List<string> productos)
         {
             List<ProductModel> products = new();
             foreach (var productName in productos)
@@ -192,11 +195,35 @@ namespace ProyectoVentas.Models
             {
                 throw new Exception("No se pudo añadir productos a la factura.", ex);
             }
+
+            return products;
         }
 
 
         // TODO: Update factura
 
         // TODO: Delete factura
+        public static void DeleteFactura(int facturaId)
+        {
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string procedureName = "ppDeleteFactura";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_factura_id", facturaId);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                throw new Exception($"No se pudo borrar la factura de id = {facturaId}", ex);
+            }
+
+            con.Close();
+        }
     }
 }
