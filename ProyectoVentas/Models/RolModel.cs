@@ -207,8 +207,20 @@ namespace ProyectoVentas.Models
         }
 
         // TODO: Set action to rol
-        public static void SetActionToRol(int rolId, int actionId)
+        public static void SetActionToRol(RolActionModel rolAction)
         {
+            int rolId, actionId;
+
+            try
+            {
+                rolId = GetRolId(rolAction.RolName);
+                actionId = ActionsModel.GetActionId(rolAction.ActionName);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             using MySqlConnection con = new(Program.connectionString);
             con.Open();
 

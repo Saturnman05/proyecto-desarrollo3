@@ -43,7 +43,7 @@ namespace ProyectoVentas.Controllers
         }
 
         // POST api/<RolesController>
-        [HttpPost]
+        [HttpPost("create")]
         public IActionResult Post([FromBody] string value)
         {
             try
@@ -56,6 +56,21 @@ namespace ProyectoVentas.Controllers
             }
 
             return Ok($"Se creó el rol {value} exitosamente.");
+        }
+
+        [HttpPost("setaction")]
+        public IActionResult PostActionToRol([FromBody] RolActionModel value)
+        {
+            try
+            {
+                RolModel.SetActionToRol(value);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+            return Ok();
         }
 
         // PUT api/<RolesController>/5
