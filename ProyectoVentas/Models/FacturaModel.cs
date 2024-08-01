@@ -138,7 +138,7 @@ namespace ProyectoVentas.Models
                 };
 
                 cmd.Parameters.AddWithValue("pp_rnc", factura.Rnc);
-                cmd.Parameters.AddWithValue("pp_total_price", factura.TotalPrice);
+                cmd.Parameters.AddWithValue("pp_total_price", PrecioTotalFactura(factura.Productos));
                 cmd.Parameters.AddWithValue("pp_user_id", factura.UserId);
 
                 MySqlParameter outputIdParam = new MySqlParameter("new_factura_id", MySqlDbType.Int32)
@@ -151,9 +151,6 @@ namespace ProyectoVentas.Models
                 newFacturaId = Convert.ToInt32(outputIdParam.Value);
 
                 List<ProductModel> products = AddProductosToFactura(con, tran, newFacturaId, factura.Productos);
-
-                // Actualizar la factura para ponerle el precio adecuado
-
 
                 tran.Commit();
             }
@@ -217,18 +214,36 @@ namespace ProyectoVentas.Models
 
                 cmd.Parameters.AddWithValue("pp_factura_id", factura.FacturaId);
                 cmd.Parameters.AddWithValue("pp_rnc", factura.Rnc);
-                cmd.Parameters.AddWithValue("pp_total_price", factura.TotalPrice);
+                cmd.Parameters.AddWithValue("pp_total_price", PrecioTotalFactura(factura.Productos));
                 cmd.Parameters.AddWithValue("pp_user_id", factura.UserId);
 
-                List<ProductModel> productosConId = new();
+                List<ProductForInvoice> productosConId = new();
                 foreach (var nombreProducto in factura.Productos)
                 {
-                    // Aquí deberías tener una función que obtenga el ProductId
                     ProductModel producto = ProductModel.GetProudctByName(nombreProducto);
-                    if (producto != null)
+                    if (producto == null)
                     {
-                        productosConId.Add(producto);
+                        continue;
                     }
+
+                    ProductForInvoice newProduct = new()
+                    {
+                        Name = producto.Name,
+                        Amount = 1,
+                        UnitPrice = producto.UnitPrice
+                    };
+
+                    foreach (var pproducto in productosConId)
+                    {
+                        if (pproducto.Name == newProduct.Name)
+                        {
+                            pproducto.Amount += 1;
+                            newProduct.Amount += 1;
+                            break;
+                        }
+                    }
+
+                    if (newProduct.Amount == 1) productosConId.Add(newProduct);
                 }
 
                 string productosJson = JsonConvert.SerializeObject(productosConId);
@@ -269,6 +284,18 @@ namespace ProyectoVentas.Models
             }
 
             con.Close();
+        }
+
+        // TODO: Calcular el precio de la factura
+        public static decimal PrecioTotalFactura(List<string> productos)
+        {
+            decimal precio = 0;
+            foreach (string producto in productos)
+            {
+                ProductModel productoObjeto = ProductModel.GetProudctByName(producto);
+                precio += productoObjeto.UnitPrice * productoObjeto.Stock;
+            }
+            return precio;
         }
     }
 }

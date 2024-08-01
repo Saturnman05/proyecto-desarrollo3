@@ -44,11 +44,12 @@ namespace ProyectoVentas.Models
             catch (Exception ex)
             {
                 transaction.Rollback();
-                con.Close();
                 throw new Exception($"Se hizo rollback de la transacción. {ex.Message}");
             }
-
-            con.Close();
+            finally
+            {
+                con.Close();
+            }
         }
 
         public static List<ProductModel> GetAllProducts()
