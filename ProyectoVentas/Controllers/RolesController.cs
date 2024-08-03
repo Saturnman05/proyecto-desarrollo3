@@ -42,6 +42,12 @@ namespace ProyectoVentas.Controllers
             }
         }
 
+        [HttpGet("byuser/{id}")]
+        public RolModel GetByUser(int id)
+        {
+            return RolModel.GetRolByUser(id);
+        }
+
         // POST api/<RolesController>
         [HttpPost("create")]
         public IActionResult Post([FromBody] string value)

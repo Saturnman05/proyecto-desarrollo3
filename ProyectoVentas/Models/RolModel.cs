@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace ProyectoVentas.Models
 {
@@ -120,6 +121,7 @@ namespace ProyectoVentas.Models
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_rol_id", null);
+                cmd.Parameters.AddWithValue("pp_user_id", null);
 
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -189,6 +191,7 @@ namespace ProyectoVentas.Models
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_rol_id", rolId);
+                cmd.Parameters.AddWithValue("pp_user_id", null);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -205,8 +208,6 @@ namespace ProyectoVentas.Models
             con.Close();
             return rol;
         }
-
-        // TODO: Set action to rol
         public static void SetActionToRol(RolActionModel rolAction)
         {
             int rolId, actionId;
@@ -246,6 +247,41 @@ namespace ProyectoVentas.Models
             }
 
             con.Clone();
+        }
+
+        // TODO: Get roles by user
+        public static RolModel GetRolByUser(int userId)
+        {
+            RolModel roles = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                using MySqlCommand cmd = new("ppSelectRoles", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_rol_id", null);
+                cmd.Parameters.AddWithValue("pp_user_id", null);
+
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    roles.RolId = Convert.ToInt32(reader["rol_id"].ToString());
+                    roles.RolName = reader["rol_name"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return roles;
         }
     }
 }
