@@ -8,8 +8,7 @@ namespace ProyectoVentas.Models
         public int CarritoId { get; set; }
         public int UserId { get; set; }
 
-        // TODO: create carrito
-        public static void CreateCarrito(CarritoModel carrito)
+        public static void CreateCarrito(int userId)
         {
             using MySqlConnection con = new(Program.connectionString);
             con.Open();
@@ -20,7 +19,7 @@ namespace ProyectoVentas.Models
             {
                 using MySqlCommand cmd = new("ppInsertCarrito", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("pp_user_id", carrito.UserId);
+                cmd.Parameters.AddWithValue("pp_user_id", userId);
 
                 cmd.ExecuteNonQuery();
 
@@ -40,5 +39,26 @@ namespace ProyectoVentas.Models
         // TODO: get carrito
 
         // TODO: delete carrito
+        public static void DeleteCarrito(int carritoId)
+        {
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            using MySqlTransaction tran = con.BeginTransaction();
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

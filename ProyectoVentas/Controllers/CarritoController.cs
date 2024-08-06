@@ -25,11 +25,11 @@ namespace ProyectoVentas.Controllers
 
         // POST api/<CarritoController>
         [HttpPost]
-        public IActionResult Post([FromBody] CarritoModel value)
+        public IActionResult Post([FromBody] int id)
         {
             try
             {
-                CarritoModel.CreateCarrito(value);
+                CarritoModel.CreateCarrito(id);
             }
             catch (Exception ex)
             {
