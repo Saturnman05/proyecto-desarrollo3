@@ -23,6 +23,12 @@ namespace ProyectoVentas.Controllers
             return ActionsModel.GetActionById(id);
         }
 
+        [HttpGet("/actionbyrol/{rolName}")]
+        public List<ActionsModel> Get(string rolName)
+        {
+            return ActionsModel.GetActionsByRol(rolName);
+        }
+
         // POST api/<ActionsController>
         [HttpPost]
         public IActionResult Post([FromBody] ActionsModel actions)

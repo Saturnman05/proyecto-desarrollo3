@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\models\\actionsmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\actionsmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\models\\rolmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\actionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\actionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\models\\rolmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\rolmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RolModel.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\RolModel.cs",
-              "RelativeDocumentMoniker": "Models\\RolModel.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\RolModel.cs",
-              "RelativeToolTip": "Models\\RolModel.cs",
-              "ViewState": "AQIAAAUBAAAAAAAAAADwvxQBAAAuAAAA",
+              "Title": "ActionsController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\ActionsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ActionsController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\ActionsController.cs",
+              "RelativeToolTip": "Controllers\\ActionsController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwBoAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-02T23:24:05.5Z",
+              "WhenOpened": "2024-08-06T00:17:03.485Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ActionsModel.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\ActionsModel.cs",
+              "RelativeDocumentMoniker": "Models\\ActionsModel.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\ActionsModel.cs",
+              "RelativeToolTip": "Models\\ActionsModel.cs",
+              "ViewState": "AQIAAJUAAAAAAAAAAAAwwKIAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T00:01:43.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "RolesController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\RolesController.cs",
               "RelativeDocumentMoniker": "Controllers\\RolesController.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\RolesController.cs",
               "RelativeToolTip": "Controllers\\RolesController.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAgwC0AAAAXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD8AAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-02T23:22:12.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RolModel.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\RolModel.cs",
+              "RelativeDocumentMoniker": "Models\\RolModel.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\RolModel.cs",
+              "RelativeToolTip": "Models\\RolModel.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAYwPwAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-02T23:24:05.5Z",
               "EditorCaption": ""
             }
           ]

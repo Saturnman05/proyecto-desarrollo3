@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace ProyectoVentas.Models
 {
@@ -49,6 +50,7 @@ namespace ProyectoVentas.Models
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_action_id", null);
+                cmd.Parameters.AddWithValue("pp_rol_id", null);
 
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -110,6 +112,7 @@ namespace ProyectoVentas.Models
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_action_id", actionId);
+                cmd.Parameters.AddWithValue("pp_rol_id", null);
 
                 using MySqlDataReader r = cmd.ExecuteReader();
                 if (r.Read())
@@ -125,6 +128,46 @@ namespace ProyectoVentas.Models
 
             con.Close();
             return action;
+        }
+
+        // TODO: Get action by rol
+        public static List<ActionsModel> GetActionsByRol(string rolName)
+        {
+            List<ActionsModel> actions = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                int rolId = RolModel.GetRolId(rolName);
+
+                using MySqlCommand cmd = new("ppSelectActions", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_action_id", null);
+                cmd.Parameters.AddWithValue("pp_rol_id", rolId);
+
+                using MySqlDataReader r = cmd.ExecuteReader();
+
+                while (r.Read())
+                {
+                    actions.Add(new ActionsModel
+                    {
+                        ActionId = Convert.ToInt32(r["action_id"].ToString()),
+                        ActionName = r["action_name"].ToString()
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return actions;
         }
     }
 }
