@@ -10,17 +10,23 @@ namespace ProyectoVentas.Controllers
     public class CarritoController : ControllerBase
     {
         // GET: api/<CarritoController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet]
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET api/<CarritoController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public CarritoModel Get(int id)
         {
-            return "value";
+            return CarritoModel.GetCarritoById(id);
+        }
+
+        [HttpGet("carritobyuser/{id}")]
+        public CarritoModel GetByUser(int id)
+        {
+            return CarritoModel.GetCarritoByUser(id);
         }
 
         // POST api/<CarritoController>
