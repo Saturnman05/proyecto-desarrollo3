@@ -37,7 +37,6 @@ namespace ProyectoVentas.Models
             }
         }
 
-        // TODO: get carrito
         public static CarritoModel GetCarritoById(int carritoId)
         {
             CarritoModel carrito = new();
