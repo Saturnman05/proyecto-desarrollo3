@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\models\\carritomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\carritomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\models\\carritoproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\carritoproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "CarritoController.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\CarritoController.cs",
               "RelativeDocumentMoniker": "Controllers\\CarritoController.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Controllers\\CarritoController.cs",
               "RelativeToolTip": "Controllers\\CarritoController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBoAAAAlAAAA",
+              "ViewState": "AQIAACYAAAAAAAAAAAAgwDMAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-06T15:18:21.531Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "CarritoModel.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\CarritoModel.cs",
               "RelativeDocumentMoniker": "Models\\CarritoModel.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\CarritoModel.cs",
               "RelativeToolTip": "Models\\CarritoModel.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAgwFIAAAA9AAAA",
+              "ViewState": "AQIAAGkAAAAAAAAAAAA9wI4AAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-06T15:18:15.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CarritoProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\CarritoProductModel.cs",
+              "RelativeDocumentMoniker": "Models\\CarritoProductModel.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\ProyectoSoftwareIII\\ProyectoVentas\\Models\\CarritoProductModel.cs",
+              "RelativeToolTip": "Models\\CarritoProductModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T23:30:21.655Z",
               "EditorCaption": ""
             }
           ]

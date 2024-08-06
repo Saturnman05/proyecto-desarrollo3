@@ -129,5 +129,39 @@ namespace ProyectoVentas.Models
                 con.Close();
             }
         }
+
+        // TODO: Add product to carrito
+        public static void AddProductToCarrito(CarritoProductModel carritoProduct)
+        {
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            using MySqlTransaction tran = con.BeginTransaction();
+
+            try
+            {
+                using MySqlCommand cmd = new("ppAddProductToCarrito", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_carrito_id", carritoProduct.CarritoId);
+                cmd.Parameters.AddWithValue("pp_product_id", carritoProduct.ProductId);
+
+                cmd.ExecuteNonQuery();
+
+                tran.Commit();
+            }
+            catch (Exception)
+            {
+                tran.Rollback();
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        // TODO: get products from carrito
+
+        // TODO: delete product from carrito
     }
 }

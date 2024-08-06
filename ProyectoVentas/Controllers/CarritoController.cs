@@ -45,6 +45,21 @@ namespace ProyectoVentas.Controllers
             return Ok();
         }
 
+        [HttpPost("AddProduct")]
+        public IActionResult PostProduct([FromBody] CarritoProductModel carritoProduct)
+        {
+            try
+            {
+                CarritoModel.AddProductToCarrito(carritoProduct);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
+        }
+
         // PUT api/<CarritoController>/5
         //[HttpPut("{id}")]
         //public void Put(int id, [FromBody] string value)
