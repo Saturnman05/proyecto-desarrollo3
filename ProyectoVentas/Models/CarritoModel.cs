@@ -48,7 +48,12 @@ namespace ProyectoVentas.Models
 
             try
             {
+                using MySqlCommand cmd = new("ppDeleteCarrito", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_carrito_id", carritoId);
 
+                cmd.ExecuteNonQuery();
+                tran.Commit();
             }
             catch (Exception ex)
             {

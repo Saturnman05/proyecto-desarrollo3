@@ -47,8 +47,18 @@ namespace ProyectoVentas.Controllers
 
         // DELETE api/<CarritoController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            try
+            {
+                CarritoModel.DeleteCarrito(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+            return Ok();
         }
     }
 }
