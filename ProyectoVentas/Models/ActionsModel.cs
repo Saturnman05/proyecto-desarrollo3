@@ -130,7 +130,6 @@ namespace ProyectoVentas.Models
             return action;
         }
 
-        // TODO: Get action by rol
         public static List<ActionsModel> GetActionsByRol(string rolName)
         {
             List<ActionsModel> actions = new();
