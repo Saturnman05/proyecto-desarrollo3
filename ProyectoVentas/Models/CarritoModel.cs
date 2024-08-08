@@ -199,5 +199,33 @@ namespace ProyectoVentas.Models
         }
 
         // TODO: delete product from carrito
+        public static void DeleteProductFromCarrito(CarritoProductModel carritoProduct)
+        {
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            using MySqlTransaction tran = con.BeginTransaction();
+
+            try
+            {
+                using MySqlCommand cmd = new("ppDeleteProduct", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_carrito_id", carritoProduct.CarritoId);
+                cmd.Parameters.AddWithValue("pp_product_id", carritoProduct.ProductId);
+
+                cmd.ExecuteNonQuery();
+
+                tran.Commit();
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

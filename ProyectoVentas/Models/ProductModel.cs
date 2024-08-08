@@ -227,6 +227,7 @@ namespace ProyectoVentas.Models
                 using MySqlCommand cmd = new(procedureName, con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_product_id", productId);
+                cmd.Parameters.AddWithValue("pp_carrito_id", null);
 
                 // Ejecutar el stored procedure
                 int rowsAffected = cmd.ExecuteNonQuery();

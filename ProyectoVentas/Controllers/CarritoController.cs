@@ -87,5 +87,20 @@ namespace ProyectoVentas.Controllers
 
             return Ok();
         }
+
+        [HttpDelete("DeleteProduct")]
+        public IActionResult DeleteProduct([FromBody] CarritoProductModel carritoProduct) 
+        {
+            try
+            {
+                CarritoModel.DeleteProductFromCarrito(carritoProduct);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
+        }
     }
 }
