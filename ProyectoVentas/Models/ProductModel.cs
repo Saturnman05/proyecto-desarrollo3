@@ -68,6 +68,7 @@ namespace ProyectoVentas.Models
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_product_id", null);
                 cmd.Parameters.AddWithValue("pp_name", null);
+                cmd.Parameters.AddWithValue("pp_carrito_id", null);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 
@@ -114,6 +115,7 @@ namespace ProyectoVentas.Models
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_product_id", productId);
                 cmd.Parameters.AddWithValue("pp_name", null);
+                cmd.Parameters.AddWithValue("pp_carrito_id", null);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -150,6 +152,7 @@ namespace ProyectoVentas.Models
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_product_id", null);
                 cmd.Parameters.AddWithValue("pp_name", productName);
+                cmd.Parameters.AddWithValue("pp_carrito_id", null);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())

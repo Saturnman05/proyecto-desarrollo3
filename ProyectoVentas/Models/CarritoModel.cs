@@ -1,5 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.Cms;
 using System.Data;
 
 namespace ProyectoVentas.Models
@@ -130,7 +129,6 @@ namespace ProyectoVentas.Models
             }
         }
 
-        // TODO: Add product to carrito
         public static void AddProductToCarrito(CarritoProductModel carritoProduct)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -161,6 +159,40 @@ namespace ProyectoVentas.Models
         }
 
         // TODO: get products from carrito
+        public static List<ProductModel> GetProductsFromCarrito(int carritoId)
+        {
+            List<ProductModel> productos = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                // TODO: hacer el stored procedure
+                using MySqlCommand cmd = new("ppSelectProducts", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_product_id", null);
+                cmd.Parameters.AddWithValue("pp_name", null);
+                cmd.Parameters.AddWithValue("pp_carrito_id", carritoId);
+
+                using MySqlDataReader r = cmd.ExecuteReader();
+                while (r.Read())
+                {
+                    ProductModel producto = new() 
+                    {
+                        // TODO: obtener la informacion del producto
+                    };
+
+                    productos.Add(producto);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return productos;
+        }
 
         // TODO: delete product from carrito
     }
