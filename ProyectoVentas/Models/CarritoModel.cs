@@ -198,7 +198,6 @@ namespace ProyectoVentas.Models
             return productos;
         }
 
-        // TODO: delete product from carrito
         public static void DeleteProductFromCarrito(CarritoProductModel carritoProduct)
         {
             using MySqlConnection con = new(Program.connectionString);
