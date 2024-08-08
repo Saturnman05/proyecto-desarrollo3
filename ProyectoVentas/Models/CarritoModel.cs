@@ -158,7 +158,6 @@ namespace ProyectoVentas.Models
             }
         }
 
-        // TODO: get products from carrito
         public static List<ProductModel> GetProductsFromCarrito(int carritoId)
         {
             List<ProductModel> productos = new();
@@ -168,7 +167,6 @@ namespace ProyectoVentas.Models
 
             try
             {
-                // TODO: hacer el stored procedure
                 using MySqlCommand cmd = new("ppSelectProducts", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_product_id", null);
@@ -180,7 +178,13 @@ namespace ProyectoVentas.Models
                 {
                     ProductModel producto = new() 
                     {
-                        // TODO: obtener la informacion del producto
+                        ProductId = Convert.ToInt32(r["product_id"].ToString()),
+                        Name = r["name"].ToString(),
+                        Description = r["description"].ToString(),
+                        UnitPrice = Convert.ToDecimal(r["unit_price"].ToString()),
+                        Stock = Convert.ToInt32(r["stock"].ToString()),
+                        DateCreated = Convert.ToDateTime(r["date_created"].ToString()),
+                        ImageUrl = r["image_url"].ToString()
                     };
 
                     productos.Add(producto);

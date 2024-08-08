@@ -16,6 +16,12 @@ namespace ProyectoVentas.Controllers
         //    return new string[] { "value1", "value2" };
         //}
 
+        [HttpGet("productoscarrito/{id}")]
+        public List<ProductModel> GetProducts(int id)
+        {
+            return CarritoModel.GetProductsFromCarrito(id);
+        }
+
         // GET api/<CarritoController>/5
         [HttpGet("{id}")]
         public CarritoModel Get(int id)
