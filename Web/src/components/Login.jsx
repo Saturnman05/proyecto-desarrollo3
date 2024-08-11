@@ -1,6 +1,42 @@
-import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useColorModeValue } from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useColorModeValue } from '@chakra-ui/react'
+import { useState } from 'react'
+
+import { API_URL } from '../constants/constantes'
 
 function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const loginData = {
+      username,
+      password
+    }
+
+    try {
+      const response = await fetch(`${API_URL}api/Users/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      })
+
+      if (response.ok){
+        /*const data = await response.json()
+        console.log('Inicio de sesión exitoso:', data)*/
+
+        // redirigir a la página de inicio
+      } else {
+        console.error('Error en el inicio de sesión')
+      }
+    } catch (error) {
+      console.error('Error al realizar la solicitud', error)
+    }
+  }
+
   return (
     <Flex minH="100vh" align="center" justify="center" bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6}>
@@ -8,25 +44,27 @@ function Login() {
           <Heading fontSize="4xl">Inicia Sesión con tu cuenta</Heading>
         </Stack>
         <Box rounded="lg" bg={useColorModeValue('white', 'gray.700')} boxShadow="lg" p={8}>
-          <Stack spacing={4}>
-            <FormControl id="username">
-              <FormLabel>Nombre de usuario</FormLabel>
-              <Input type="username" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Contraseña</FormLabel>
-              <Input type="password" />
-            </FormControl>
-            <Stack spacing={10}>
-              <Button bg="blue.400" color="white" _hover={{ bg: 'blue.500', }} >
-                Iniciar Sesión
-              </Button>
+          <form onSubmit={handleSubmit}>
+            <Stack spacing={4}>
+              <FormControl id="username">
+                <FormLabel>Nombre de usuario</FormLabel>
+                <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+              </FormControl>
+              <FormControl id="password">
+                <FormLabel>Contraseña</FormLabel>
+                <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              </FormControl>
+              <Stack spacing={10}>
+                <Button type="submit" bg="blue.400" color="white" _hover={{ bg: 'blue.500' }}>
+                  Iniciar Sesión
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
+          </form>
         </Box>
       </Stack>
     </Flex>
-  );
+  )
 }
 
 export default Login;
