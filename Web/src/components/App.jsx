@@ -1,8 +1,12 @@
 import PaginaInicio from './PaginaInicio'
+import SideMenu from './SideMenu'
 
 function App() {
   return (
-    <PaginaInicio />
+    <>
+      <SideMenu />
+      <PaginaInicio />
+    </>
   )
 }
 

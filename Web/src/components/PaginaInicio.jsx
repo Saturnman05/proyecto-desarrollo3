@@ -1,5 +1,7 @@
-import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Image } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
+import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Image } from "@chakra-ui/react"
+
+// import SideMenu from "./SideMenu"
 import { API_URL } from "../constants/constantes"
 
 export default function PaginaInicio () {
@@ -31,7 +33,7 @@ export default function PaginaInicio () {
       {
         (products.length > 0) ? (
           products.map(product => (
-            <Card key={product.productId}>
+            <Card key={product.productId} className='card'>
               <CardHeader>
                 <Heading size='md'>{product.name}</Heading>
               </CardHeader>
