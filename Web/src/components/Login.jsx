@@ -1,5 +1,6 @@
 import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useColorModeValue } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { UserContext } from '../context/user.jsx'
 
 import { API_URL } from '../constants/constantes'
 import { User } from './globals.js'
@@ -7,8 +8,8 @@ import { User } from './globals.js'
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  
-  //const navigate = useNavigate() 
+
+  const { setUserVal } = useContext(UserContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -30,8 +31,8 @@ function Login() {
       if (response.ok){
         const userData = await response.json()
         const user = new User(userData.userName, userData.fullName, userData.password)
+        setUserVal(user)
         // redirigir con el user
-        // poner al user como estado global
       } else {
         console.error('Error en el inicio de sesión')
       }
@@ -47,7 +48,7 @@ function Login() {
           <Heading fontSize="4xl">Inicia Sesión con tu cuenta</Heading>
         </Stack>
         <Box rounded="lg" bg={useColorModeValue('white', 'gray.700')} boxShadow="lg" p={8}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} method='post'>
             <Stack spacing={4}>
               <FormControl id="username">
                 <FormLabel>Nombre de usuario</FormLabel>
