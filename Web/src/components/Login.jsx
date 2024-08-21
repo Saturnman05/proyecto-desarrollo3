@@ -1,9 +1,8 @@
 import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useColorModeValue } from '@chakra-ui/react'
 import { useState, useContext } from 'react'
-import { UserContext } from '../context/user.jsx'
 
 import { API_URL } from '../constants/constantes'
-import { User } from './globals.js'
+import { UserContext } from '../context/user.jsx'
 
 function Login() {
   const [username, setUsername] = useState('')
@@ -30,8 +29,7 @@ function Login() {
 
       if (response.ok){
         const userData = await response.json()
-        const user = new User(userData.userName, userData.fullName, userData.password)
-        setUserVal(user)
+        setUserVal({ userId: userData.userId, userName: userData.userName, fullName: userData.fullName, password: userData.password })
         // redirigir con el user
       } else {
         console.error('Error en el inicio de sesión')
