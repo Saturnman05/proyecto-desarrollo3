@@ -6,7 +6,7 @@ import { UserContext } from '../context/user'
 import './Nav.css'
 
 export default function Nav () {
-  const { userVal, setUserVal } = useContext(UserContext)
+  const { userVal } = useContext(UserContext)
 
   return (
     <div className='nav-box'>

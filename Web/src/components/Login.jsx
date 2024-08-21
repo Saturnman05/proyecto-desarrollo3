@@ -1,42 +1,9 @@
 import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useColorModeValue } from '@chakra-ui/react'
-import { useState, useContext } from 'react'
 
-import { API_URL } from '../constants/constantes'
-import { UserContext } from '../context/user.jsx'
+import { useLogin } from '../hooks/useLogin';
 
-function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
-  const { setUserVal } = useContext(UserContext)
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const loginData = {
-      username,
-      password
-    }
-
-    try {
-      const response = await fetch(`${API_URL}api/Users/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      })
-
-      if (response.ok){
-        const userData = await response.json()
-        setUserVal({ userId: userData.userId, userName: userData.userName, fullName: userData.fullName, password: userData.password })
-        
-        // redirigir con el user a la pagina de inicio
-      }
-    } catch (error) {
-      console.error('Error al realizar la solicitud', error)
-    }
-  }
+function Login () {
+  const { username, setUsername, password, setPassword, handleSubmit } = useLogin()
 
   return (
     <Flex minH="100vh" align="center" justify="center" bg={useColorModeValue('gray.50', 'gray.800')}>
