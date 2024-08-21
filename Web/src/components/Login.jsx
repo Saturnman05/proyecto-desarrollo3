@@ -2,10 +2,13 @@ import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useCo
 import { useState } from 'react'
 
 import { API_URL } from '../constants/constantes'
+import { User } from './globals.js'
 
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  
+  //const navigate = useNavigate() 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,10 +28,10 @@ function Login() {
       })
 
       if (response.ok){
-        /*const data = await response.json()
-        console.log('Inicio de sesión exitoso:', data)*/
-
-        // redirigir a la página de inicio
+        const userData = await response.json()
+        const user = new User(userData.userName, userData.fullName, userData.password)
+        // redirigir con el user
+        // poner al user como estado global
       } else {
         console.error('Error en el inicio de sesión')
       }

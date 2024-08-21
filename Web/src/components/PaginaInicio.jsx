@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Image } from "@chakra-ui/react"
 
-// import SideMenu from "./SideMenu"
 import { API_URL } from "../constants/constantes"
 
+// eslint-disable-next-line react/prop-types
 export default function PaginaInicio () {
   const [products, setProducts] = useState([])
   
@@ -30,6 +30,12 @@ export default function PaginaInicio () {
 
   return (
     <div className="pagina-inicio">
+      <div>
+        {
+          //(user) ? user.userName : ''
+        }
+      </div>
+
       {
         (products.length > 0) ? (
           products.map(product => (
