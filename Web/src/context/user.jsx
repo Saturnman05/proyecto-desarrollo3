@@ -4,8 +4,7 @@ import { createContext, useState } from 'react';
 export const UserContext = createContext()
 
 // crear el provider
-// eslint-disable-next-line react/prop-types
-export function UserProvider ({ children }) {
+export function UserProvider (children) {
   const [userVal, setUserVal] = useState({username: '', fullName: '', password: ''})
   return (
     <UserContext.Provider value={{

@@ -1,11 +1,10 @@
-import Login from './Login'
-//import PaginaInicio from './PaginaInicio'
-//import SideMenu from './SideMenu'
+// import Login from './Login'
+import PaginaInicio from './PaginaInicio'
 
 function App() {
   return (
     <>
-      <Login />
+      <PaginaInicio />
     </>
   )
 }

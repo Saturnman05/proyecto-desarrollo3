@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Image } from "@chakra-ui/react"
 
+import Nav from "./Nav"
 import { API_URL } from "../constants/constantes"
 
 // eslint-disable-next-line react/prop-types
@@ -30,11 +31,7 @@ export default function PaginaInicio () {
 
   return (
     <div className="pagina-inicio">
-      <div>
-        {
-          //(user) ? user.userName : ''
-        }
-      </div>
+      <Nav />
 
       {
         (products.length > 0) ? (

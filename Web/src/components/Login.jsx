@@ -30,9 +30,8 @@ function Login() {
       if (response.ok){
         const userData = await response.json()
         setUserVal({ userId: userData.userId, userName: userData.userName, fullName: userData.fullName, password: userData.password })
-        // redirigir con el user
-      } else {
-        console.error('Error en el inicio de sesión')
+        
+        // redirigir con el user a la pagina de inicio
       }
     } catch (error) {
       console.error('Error al realizar la solicitud', error)
