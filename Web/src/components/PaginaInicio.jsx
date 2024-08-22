@@ -1,33 +1,16 @@
-import { useEffect, useState } from "react"
 import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Image } from "@chakra-ui/react"
 
+import { useEffect } from "react"
+import { useProducts } from "../hooks/useProducts"
+
 import Nav from "./Nav"
-import { API_URL } from "../constants/constantes"
 
-// eslint-disable-next-line react/prop-types
-export default function PaginaInicio () {
-  const [products, setProducts] = useState([])
-  
-  const loadProducts = async () => {
-    const allProductsResponse = await fetch(`${API_URL}api/Products`)
-    const productsJson = await allProductsResponse.json()
-
-    const productsList = productsJson?.map(product => ({
-      productId: product.productId,
-      name: product.name,
-      description: product.description,
-      imageUrl: product.imageUrl,
-      unitPrice: product.unitPrice,
-      stock: product.stock,
-      dateCreated: product.dateCreated
-    }))
-    
-    setProducts(productsList)
-  }
+export default function PaginaInicio () {  
+  const { products, loadProducts } = useProducts()
 
   useEffect(() => {
     loadProducts()
-  }, [])
+  })
 
   return (
     <div className="pagina-inicio">
