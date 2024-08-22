@@ -1,10 +1,10 @@
-// import Login from './Login'
-import PaginaInicio from './PaginaInicio'
+import Login from './Login'
+// import PaginaInicio from './PaginaInicio'
 
 function App() {
   return (
     <>
-      <PaginaInicio />
+      <Login />
     </>
   )
 }

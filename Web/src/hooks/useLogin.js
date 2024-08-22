@@ -28,6 +28,7 @@ export function useLogin () {
   
         if (response.ok){
           const userData = await response.json()
+          console.log(userData)
           setUserVal({ userId: userData.userId, userName: userData.userName, fullName: userData.fullName, password: userData.password })
           
           // redirigir con el user a la pagina de inicio

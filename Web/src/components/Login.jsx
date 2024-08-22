@@ -2,7 +2,7 @@ import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useCo
 
 import { useLogin } from '../hooks/useLogin';
 
-function Login () {
+export default function Login () {
   const { username, setUsername, password, setPassword, handleSubmit } = useLogin()
 
   return (
@@ -34,5 +34,3 @@ function Login () {
     </Flex>
   )
 }
-
-export default Login;
