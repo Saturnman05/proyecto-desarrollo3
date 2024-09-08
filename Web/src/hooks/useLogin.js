@@ -1,11 +1,13 @@
 import { useState, useContext } from 'react'
 import { UserContext } from '../context/user'
+import { useNavigate } from 'react-router-dom'
 
 import { API_URL } from '../constants/constantes'
 
 export function useLogin () {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
   
     const { setUserVal } = useContext(UserContext)
   
@@ -32,6 +34,7 @@ export function useLogin () {
           setUserVal({ userId: userData.userId, userName: userData.userName, fullName: userData.fullName, password: userData.password })
           
           // redirigir con el user a la pagina de inicio
+          navigate('/')
         }
       } catch (error) {
         console.error('Error al realizar la solicitud', error)

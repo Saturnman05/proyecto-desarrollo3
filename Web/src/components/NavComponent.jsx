@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
-function NavComponent () {
+export default function NavComponent () {
   return (
     <>
       <Navbar key={"xxl"} expand={"xxl"} className="bg-body-tertiary mb-3">
@@ -25,8 +25,8 @@ function NavComponent () {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="#action1">Home</Nav.Link>
-                <Nav.Link href="#action2">Link</Nav.Link>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/login">LogIn</Nav.Link>
                 <NavDropdown
                   title="Dropdown"
                   id="offcanvasNavbarDropdown-expand-xxl"
@@ -55,7 +55,5 @@ function NavComponent () {
         </Container>
       </Navbar>
     </>
-  );
+  )
 }
-
-export default NavComponent;
