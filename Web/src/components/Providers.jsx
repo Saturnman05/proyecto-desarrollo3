@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { UserProvider } from '../context/user'
 
 export default function Providers ({ children }) {
@@ -10,8 +9,4 @@ export default function Providers ({ children }) {
       </UserProvider>
     </React.StrictMode>
   )
-}
-
-Providers.propTypes = {
-  children: PropTypes.node.isRequired,
 }

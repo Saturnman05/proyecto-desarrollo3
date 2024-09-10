@@ -3,8 +3,6 @@ import { useProducts } from '../hooks/useProducts'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
-import NavComponent from '../components/NavComponent'
-
 export default function PaginaInicio () {  
   const { products, loadProducts } = useProducts()
 
@@ -14,7 +12,6 @@ export default function PaginaInicio () {
 
   return (
     <div className="pagina-inicio">
-      <NavComponent />
       {
         (products.length > 0) ? (
           products.map(product => (

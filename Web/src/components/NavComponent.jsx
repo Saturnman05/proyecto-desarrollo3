@@ -1,12 +1,10 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useContext } from 'react'
+import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
+import { UserContext } from '../context/user'
 
 export default function NavComponent () {
+  const { userVal } = useContext(UserContext)
+
   return (
     <>
       <Navbar key={"xxl"} expand={"xxl"} className="bg-body-tertiary mb-3">
@@ -20,7 +18,7 @@ export default function NavComponent () {
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel-expand-xxl">
-                Offcanvas
+                Menu {(userVal.userName !== '') ? `de ${userVal.userName}` : ''}
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
