@@ -1,15 +1,20 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
 import { UserContext } from '../context/user'
 
 export default function NavComponent () {
   const { userVal } = useContext(UserContext)
+  const [menuMessage, setMenuMessage] = useState(`Menu ${(userVal.userName !== '') ? `de ${userVal.userName}` : ''}`)
+
+  useEffect(() => {
+    setMenuMessage(`Menu ${(userVal.userName !== '') ? `de ${userVal.userName}` : ''}`)
+  }, [userVal])
 
   return (
     <>
       <Navbar key={"xxl"} expand={"xxl"} className="bg-body-tertiary mb-3">
         <Container fluid>
-          <Navbar.Brand href="#">CompraNet</Navbar.Brand>
+          <Navbar.Brand href="/">CompraNet</Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar-expand-xxl" />
           <Navbar.Offcanvas
             id="offcanvasNavbar-expand-xxl"
@@ -18,13 +23,22 @@ export default function NavComponent () {
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel-expand-xxl">
-                Menu {(userVal.userName !== '') ? `de ${userVal.userName}` : ''}
+                {menuMessage}
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/login">LogIn</Nav.Link>
+                {
+                  (Number.isInteger(userVal.userId)) ? (
+                    <>
+                      <Nav.Link href="/login">LogIn</Nav.Link>
+                      <Nav.Link>Register</Nav.Link>
+                    </>
+                  ) : (
+                    <Nav.Link href="/logout">Log Out</Nav.Link>
+                  )
+                }
                 <NavDropdown
                   title="Dropdown"
                   id="offcanvasNavbarDropdown-expand-xxl"

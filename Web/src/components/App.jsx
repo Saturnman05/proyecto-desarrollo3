@@ -3,7 +3,7 @@ import Login from './Login'
 import PaginaInicio from './PaginaInicio'
 import NavComponent from './NavComponent'
 
-function App () {
+export default function App () {
   return (
     <>
       <NavComponent />
@@ -16,5 +16,3 @@ function App () {
     </>
   )
 }
-
-export default App
