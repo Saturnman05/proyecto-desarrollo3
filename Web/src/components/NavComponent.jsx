@@ -7,7 +7,7 @@ export default function NavComponent () {
   const [menuMessage, setMenuMessage] = useState(`Menu ${(userVal.userName !== '') ? `de ${userVal.userName}` : ''}`)
 
   useEffect(() => {
-    setMenuMessage(`Menu ${(userVal.userName !== '') ? `de ${userVal.userName}` : ''}`)
+    setMenuMessage(`Menu ${(userVal.userName) ? `de ${userVal.userName}` : ''}`)
   }, [userVal])
 
   return (
@@ -31,12 +31,12 @@ export default function NavComponent () {
                 <Nav.Link href="/">Home</Nav.Link>
                 {
                   (Number.isInteger(userVal.userId)) ? (
+                    <Nav.Link href="/logout">Log Out</Nav.Link>
+                  ) : (
                     <>
                       <Nav.Link href="/login">LogIn</Nav.Link>
-                      <Nav.Link>Register</Nav.Link>
+                      <Nav.Link href='/register'>Register</Nav.Link>
                     </>
-                  ) : (
-                    <Nav.Link href="/logout">Log Out</Nav.Link>
                   )
                 }
                 <NavDropdown
@@ -60,7 +60,7 @@ export default function NavComponent () {
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button variant="outline-success">Search</Button>
+                <Button variant="outline-success" onClick={() => { console.log(userVal); console.log(userVal.userId) }}>Search</Button>
               </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
