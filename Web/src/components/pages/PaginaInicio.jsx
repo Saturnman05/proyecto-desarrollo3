@@ -25,7 +25,7 @@ export default function PaginaInicio () {
       <Container className="flex-grow-1 py-2">
         <h1 className="text-center mb-5">Our Products</h1>
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-          {mockProducts.map((product) => (
+          {products.map((product) => (
             <Col key={product.productId}>
               <Card className="h-100">
                 <Card.Img variant='top' src={product.imageUrl} />

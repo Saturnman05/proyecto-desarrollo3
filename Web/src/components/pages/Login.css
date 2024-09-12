@@ -14,10 +14,10 @@
 }
 
 .login form {
-  width: 100%; /* Para que responda al contenedor */
-  max-width: 400px; /* Ancho máximo para que no sea muy grande */
+  width: 100%;
+  max-width: 400px;
   padding: 20px;
-  background-color: #f8f9fa; /* Color de fondo opcional */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
