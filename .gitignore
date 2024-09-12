@@ -1,2 +1,5 @@
-.vs/*
-*/.vs/*
+# Ignorar archivos y carpetas de Visual Studio
+.vs/
+*.bin
+*.suo
+*.v7.bin

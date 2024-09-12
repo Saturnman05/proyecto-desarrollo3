@@ -1,0 +1,23 @@
+.center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.login form {
+  width: 100%; /* Para que responda al contenedor */
+  max-width: 400px; /* Ancho máximo para que no sea muy grande */
+  padding: 20px;
+  background-color: #f8f9fa; /* Color de fondo opcional */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}

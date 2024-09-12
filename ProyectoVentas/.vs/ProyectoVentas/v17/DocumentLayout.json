@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+=======
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\user\\desktop\\proyectosoftwareiii\\proyectoventas\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+>>>>>>> 0adb9903bbc13e57485f3563f30024afbb3af4ff
       "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -23,6 +27,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -36,12 +41,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+=======
+>>>>>>> 0adb9903bbc13e57485f3563f30024afbb3af4ff
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAgwBsAAAA8AAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAgwCcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-08T16:47:37.599Z"
             }
