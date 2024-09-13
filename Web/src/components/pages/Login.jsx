@@ -14,15 +14,12 @@ export default function Login () {
         <Form onSubmit={handleSubmit} method='get'>
           <Form.Group>
             <Form.Label>Username</Form.Label>
-            <Form.Control value={username} onChange={(u) => setUsername(u.target.value)} type='username' placeholder='Enter username'/>
-            <Form.Text classname='text-muted'>
-              Enter your username
-            </Form.Text>
+            <Form.Control value={username} onChange={(u) => setUsername(u.target.value)} type='username' placeholder='placeh0ldernam3'/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control value={password} onChange={(p) => setPassword(p.target.value)} type="password" placeholder="Password" />
+            <Form.Control value={password} onChange={(p) => setPassword(p.target.value)} type="password" placeholder="********" />
           </Form.Group>
 
           <Button variant='primary' type='submit'>Log In</Button>
