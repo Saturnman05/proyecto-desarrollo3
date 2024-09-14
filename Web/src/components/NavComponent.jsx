@@ -1,18 +1,14 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
-import { UserContext } from '../context/user'
+import { useLogout } from '../hooks/useLogout'
 
 export default function NavComponent () {
-  const { userVal, setUserVal } = useContext(UserContext)
+  const { userVal, logout } = useLogout()
   const [menuMessage, setMenuMessage] = useState(`Menu ${(userVal.userName !== '') ? `de ${userVal.userName}` : ''}`)
 
   useEffect(() => {
     setMenuMessage(`Menu ${(userVal.userName) ? `de ${userVal.userName}` : ''}`)
   }, [userVal])
-
-  const logout = () => {
-    setUserVal({ userId: '', username: '', fullName: '', password: '' })
-  }
 
   return (
     <Navbar key={"xxl"} expand={"xxl"} className="bg-body-tertiary mb-3">
