@@ -1,59 +1,9 @@
-import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-import { API_URL } from '../../constants/constantes'
-import { useNavigate } from 'react-router-dom'
+import { useRegister } from '../../hooks/useRegister'
 import './Register.css'
 
 export default function Register () {
-  // const [newUser, setNewUser] = useState({ userId: null, userName: null, fullName: null, password: null })
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [fullName, setFullName] = useState('')
-  const [email, setEmail] = useState('test@mail.com')
-
-  const navigate = useNavigate()
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    if (username === '' || fullName === '' || password === '') return
-
-    const registerData = { 
-      userId: 0,
-      fullName: fullName,
-      userName: username,  
-      password: password,
-      email: email,
-      rolId: 2,
-      rolName: 'user',
-      dateCreated: new Date().toISOString(),
-      lastLogin: new Date().toISOString()
-    }
-
-    console.log(JSON.stringify(registerData))
-
-    try {
-      const response = await fetch(`${API_URL}api/Users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(registerData),
-      })
-
-      if (!response.ok) {
-        const errorDetails = await response.json()
-        console.log('Error details:', errorDetails) // Detalles del error
-        return
-      }
-
-      const data = await response.json()
-      console.log('User registered:', data)
-      navigate('/')
-    } catch (error) {
-      console.log('Error al realizar la solicitud', error)
-    }
-  }
+  const { username, setUsername, fullName, setFullName, password, setPassword, email, setEmail, handleSubmit } = useRegister()
 
   return (
     <main className='center-column'>
@@ -68,6 +18,11 @@ export default function Register () {
           <Form.Group>
             <Form.Label>Full Name</Form.Label>
             <Form.Control value={fullName} onChange={(u) => setFullName(u.target.value)} type='fullName' placeholder='Enter full name'/>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='your@mail.com' />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
