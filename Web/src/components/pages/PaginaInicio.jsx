@@ -1,9 +1,12 @@
 import { useEffect } from 'react'
 import { useProducts } from '../../hooks/useProducts'
 import { Button, Container, Col, Card, Row, } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 export default function PaginaInicio () {  
   const { products, loadProducts } = useProducts()
+
+  const navigate = useNavigate()
 
   const mockProducts = [
     { productId: 1, name: "Minimal Chair", description: '', unitPrice: "$199", stock: 12, dateCreated: '10/1/2024', imageUrl: "https://gotmuebles.mx/cdn/shop/products/silla-core-got-muebles.jpg?v=1456415173" },
@@ -28,7 +31,7 @@ export default function PaginaInicio () {
           {
             products.map((product) => (
               <Col key={product.productId}>
-                <Card className="h-100 clickable" onClick={() => console.log(product.name)}>
+                <Card className="h-100 clickable" onClick={() => navigate(`/product/${product.productId}`)}>
                   <Card.Img variant='top' src={product.imageUrl} />
                   <Card.Body className="d-flex flex-column">
                     <Card.Title>{product.name}</Card.Title>
