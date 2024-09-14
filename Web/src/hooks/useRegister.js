@@ -10,7 +10,7 @@ export function useRegister () {
 
   const navigate = useNavigate()
 
-  const handleSubmit = async (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault()
 
     if (username === '' || fullName === '' || password === '') return
@@ -44,13 +44,11 @@ export function useRegister () {
         return
       }
 
-      const data = await response.json()
-      console.log('User registered:', data)
-      navigate('/')
+      navigate('/login')
     } catch (error) {
       console.log('Error al realizar la solicitud', error)
     }
   }
 
-  return { username, setUsername, password, setPassword, fullName, setFullName, email, setEmail, handleSubmit }
+  return { username, setUsername, password, setPassword, fullName, setFullName, email, setEmail, handleSubmit: handleRegisterSubmit }
 }

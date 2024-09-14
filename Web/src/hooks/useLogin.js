@@ -11,12 +11,12 @@ export function useLogin () {
 
   const { setUserVal } = useContext(UserContext)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e, loginUsername, loginPassword) => {
+    if (e?.preventDefault) e.preventDefault()
 
     const loginData = {
-      username,
-      password
+      username: loginUsername || username,
+      password: loginPassword || password
     }
 
     try {
