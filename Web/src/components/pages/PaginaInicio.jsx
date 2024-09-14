@@ -25,18 +25,20 @@ export default function PaginaInicio () {
       <Container className="flex-grow-1 py-2">
         <h1 className="text-center mb-5">Our Products</h1>
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-          {products.map((product) => (
-            <Col key={product.productId}>
-              <Card className="h-100">
-                <Card.Img variant='top' src={product.imageUrl} />
-                <Card.Body className="d-flex flex-column">
-                  <Card.Title>{product.name}</Card.Title>
-                  <Card.Text className="text-muted mb-4">{product.unitPrice}</Card.Text>
-                  <Button variant="primary" className="mt-auto">Add to Cart</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
+          {
+            products.map((product) => (
+              <Col key={product.productId}>
+                <Card className="h-100 clickable" onClick={() => console.log(product.name)}>
+                  <Card.Img variant='top' src={product.imageUrl} />
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title>{product.name}</Card.Title>
+                    <Card.Text className="text-muted mb-4">{product.unitPrice}</Card.Text>
+                    <Button variant="primary" className="mt-auto">Add to Cart</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))
+          }
         </Row>
       </Container>
     </div>
