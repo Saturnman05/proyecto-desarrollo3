@@ -35,7 +35,7 @@ export default function PaginaInicio () {
                   <Card.Img variant='top' src={product.imageUrl} />
                   <Card.Body className="d-flex flex-column">
                     <Card.Title>{product.name}</Card.Title>
-                    <Card.Text className="text-muted mb-4">{product.unitPrice}</Card.Text>
+                    <Card.Text className="text-muted mb-4">${product.unitPrice}</Card.Text>
                     <Button variant="primary" className="mt-auto">Add to Cart</Button>
                   </Card.Body>
                 </Card>

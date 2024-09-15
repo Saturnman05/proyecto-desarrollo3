@@ -1,23 +1,44 @@
 import { useParams } from 'react-router-dom'
+import { API_URL } from '../../constants/constantes'
+import { useEffect, useState } from 'react'
 
 export default function Product() {
   const { productId } = useParams()
+  const [product, setProduct] = useState(null)
 
-  const mockProducts = [
-    { productId: 1, name: "Minimal Chair", unitPrice: "$199" },
-    { productId: 2, name: "Sleek Table", unitPrice: "$299" }
-  ]
+  const getProduct = async () => {
+    try {
+      const response = await fetch(`${API_URL}api/Products/${productId}`)
 
-  const product = mockProducts.find(p => p.productId === parseInt(productId))
+      if (!response.ok) {
+        throw new Error('Error al obtener los datos del producto')
+      }
 
-  if (!product) {
-    return <div>Product not found</div>
+      const productData = await response.json()
+      setProduct(productData)
+    } catch (error) {
+      console.log('Error:', error)
+    }
   }
+
+  useEffect(() => {
+    getProduct()
+  }, [])
 
   return (
     <div>
-      <h1>{product.name}</h1>
-      <p>Price: {product.unitPrice}</p>
+      {
+        product ? (
+          <>
+            <h1>{product.name}</h1>
+            <p>Price: {product.unitPrice}</p>
+          </>
+        ) : (
+          <>
+            <p>Product not found</p>
+          </>
+        )
+      }
     </div>
   )
 }
