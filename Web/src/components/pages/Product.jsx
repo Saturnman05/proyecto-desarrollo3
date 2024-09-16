@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useProduct } from '../../hooks/useProducts'
 
-export default function Product() {
+export default function Product () {
   const { product, getProduct } = useProduct()
 
   useEffect(() => {
@@ -17,9 +17,16 @@ export default function Product() {
             <p>Price: {product.unitPrice}</p>
           </>
         ) : (
-          <>
+          <div 
+            id='product-not-found' 
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
             <p>Product not found</p>
-          </>
+          </div>
         )
       }
     </div>
