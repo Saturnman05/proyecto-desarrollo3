@@ -12,10 +12,24 @@ export default function Product () {
     <div>
       {
         product ? (
-          <>
+          <div 
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              flexDirection: 'column', 
+              width: '80%',
+              maxWidth: '600px',
+              margin: '0 auto'
+            }}
+          >
             <h1>{product.name}</h1>
-            <p>Price: {product.unitPrice}</p>
-          </>
+            <img src={product.imageUrl} alt={product.name} />
+            <p>Product description: {product.description}</p>
+            <p>Price: ${product.unitPrice}</p>
+            <p>Amount in stock: {product.stock}</p>
+            <button>Add to cart</button>
+          </div>
         ) : (
           <div 
             id='product-not-found' 
