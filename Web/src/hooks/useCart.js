@@ -95,5 +95,9 @@ export function useCart () {
     }
   }
 
-  return { cartProducts: products, setProducts, loadUserCartProducts, removeFromCart, addToCart }
+  const isInCart = (productId) => {
+    return products.some(cartProduct => cartProduct.productId === productId)
+  }
+
+  return { cartProducts: products, setProducts, loadUserCartProducts, removeFromCart, addToCart, isInCart }
 }

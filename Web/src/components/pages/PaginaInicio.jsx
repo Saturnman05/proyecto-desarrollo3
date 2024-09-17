@@ -1,22 +1,20 @@
 import { useEffect } from 'react'
 import { useProducts } from '../../hooks/useProducts'
-import { Button, Container, Col, Card, Row, } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import { Button, Container, Col, Card, Row, } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { useCart } from '../../hooks/useCart'
 
 export default function PaginaInicio () {  
   const { products, loadProducts } = useProducts()
-  const { addToCart, removeFromCart, cartProducts, loadUserCartProducts } = useCart()
+  const { addToCart, removeFromCart, loadUserCartProducts, isInCart } = useCart()
   const navigate = useNavigate()
 
   useEffect(() => {
     loadProducts()
     loadUserCartProducts()
   }, [])
-
-  const isInCart = (productId) => {
-    return cartProducts.some(cartProduct => cartProduct.productId === productId)
-  }
 
   return (
     <div className='pagina-inicio'>
@@ -35,7 +33,9 @@ export default function PaginaInicio () {
                       (isInCart(product.productId)) ? (
                         <Button variant='danger' className='mt-auto' onClick={(event) => {removeFromCart(event, product.productId)}}>Remove from Cart</Button>
                       ) : (
-                        <Button variant='primary' className='mt-auto' onClick={(event) => addToCart(event, product.productId)}>Add to Cart</Button>
+                        <Button variant='primary' className='mt-auto' onClick={(event) => addToCart(event, product.productId)}>
+                          <FontAwesomeIcon icon={faShoppingCart} /> Add to Cart
+                        </Button>
                       )
                     }
                   </Card.Body>
