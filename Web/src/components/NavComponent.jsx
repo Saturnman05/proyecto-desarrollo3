@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+
 import { useLogout } from '../hooks/useLogout'
 
 export default function NavComponent () {
@@ -32,7 +36,9 @@ export default function NavComponent () {
               {
                 (Number.isInteger(userVal.userId) && userVal.userId > 0) ? (
                   <>
-                    <Nav.Link as={Link} to={`cart/${userVal.userId}`}>My Cart</Nav.Link>
+                    <Nav.Link as={Link} to={`cart/${userVal.userId}`}>
+                      <FontAwesomeIcon icon={faShoppingCart} /> My Cart
+                    </Nav.Link>
                     <Nav.Link as={Link} to='/' onClick={() => logout()}>Log Out</Nav.Link>
                   </>
                 ) : (
