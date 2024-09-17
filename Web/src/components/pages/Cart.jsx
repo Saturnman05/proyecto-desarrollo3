@@ -1,10 +1,11 @@
 import { Button, Container, Card, Col, Row } from 'react-bootstrap'
 import { useEffect } from 'react'
 import { useCart } from '../../hooks/useCart'
+import { useNavigate } from 'react-router-dom'
 
 export default function Cart () {
-  const { products, loadUserCartProducts, removeFromCart } = useCart()
-
+  const { cartProducts, loadUserCartProducts, removeFromCart } = useCart()
+  const navigate = useNavigate()
   useEffect(() => {
     loadUserCartProducts()
   }, [])
@@ -14,15 +15,15 @@ export default function Cart () {
       <h1 className='text-center mb-5'>Cart Page</h1>
       <Row xs={1} sm={2} md={3} lg={4} className='g-4'>
         {
-          (products) ? (
-            products.map((product) => (
+          (cartProducts) ? (
+            cartProducts.map((product) => (
             <Col key={product.productId}>
               <Card className='h-100 clickable' onClick={() => navigate(`/product/${product.productId}`)}>
                 <Card.Img variant='top' src={product.imageUrl} />
                 <Card.Body className='d-flex flex-column'>
                   <Card.Title>{product.name}</Card.Title>
                   <Card.Text className='text-muted mb-4'>${product.unitPrice}</Card.Text>
-                  <Button variant='danger' className='mt-auto' onClick={() => removeFromCart(product.productId)}>Remove from Cart</Button>
+                  <Button variant='danger' className='mt-auto' onClick={(event) => {removeFromCart(event, product.productId)}}>Remove from Cart</Button>
                 </Card.Body>
               </Card>
             </Col>

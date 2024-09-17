@@ -4,7 +4,7 @@ import { UserContext } from '../context/user'
 import { useNavigate } from 'react-router-dom'
 
 export function useCart () {
-  const [products, setProducts] = useState()
+  const [products, setProducts] = useState([])
   const { userVal } = useContext(UserContext)
 
   const navigate = useNavigate()
@@ -38,7 +38,9 @@ export function useCart () {
     }
   }
 
-  const removeFromCart = async (productId) => {
+  const removeFromCart = async (event, productId) => {
+    event.stopPropagation()
+
     try {
       const carritoId = await getCarritoId()
 
@@ -57,12 +59,41 @@ export function useCart () {
       })
 
       if (response.ok) {
-        navigate(`/cart/${userVal.userId}`)
+        loadUserCartProducts()
       }
     } catch (error) {
       console.log('Error: ', error)
     }
   }
 
-  return { products, setProducts, loadUserCartProducts, removeFromCart }
+  const addToCart = async (event, productId) => {
+    event.stopPropagation()
+
+    try {
+      const carritoId = await getCarritoId()
+
+      const carritoProduct = {
+        carritoId: carritoId,
+        productId: productId,
+        productAmount: 1
+      }
+      
+      const response = await fetch(`${API_URL}api/Carrito/AddProduct`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(carritoProduct)
+      })
+
+      if (response.ok) {
+        // navigate(`cart/${userVal.userId}`)
+        loadUserCartProducts()
+      }
+    } catch (error) {
+      console.log('Error: ', error)
+    }
+  }
+
+  return { cartProducts: products, setProducts, loadUserCartProducts, removeFromCart, addToCart }
 }
