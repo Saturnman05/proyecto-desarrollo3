@@ -7,7 +7,7 @@ export default function Cart () {
 
   useEffect(() => {
     loadUserCartProducts()
-  })
+  }, [])
 
   return (
     <Container className='flex-grow-1 py-2'>
@@ -22,7 +22,7 @@ export default function Cart () {
                 <Card.Body className='d-flex flex-column'>
                   <Card.Title>{product.name}</Card.Title>
                   <Card.Text className='text-muted mb-4'>${product.unitPrice}</Card.Text>
-                  <Button variant='danger' className='mt-auto'>Remove from Cart</Button>
+                  <Button variant='danger' className='mt-auto' onClick={() => removeFromCart(product.productId)}>Remove from Cart</Button>
                 </Card.Body>
               </Card>
             </Col>

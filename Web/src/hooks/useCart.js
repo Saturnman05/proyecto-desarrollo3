@@ -1,17 +1,24 @@
 import { useContext, useState } from 'react'
 import { API_URL } from '../constants/constantes'
 import { UserContext } from '../context/user'
+import { useNavigate } from 'react-router-dom'
 
 export function useCart () {
   const [products, setProducts] = useState()
   const { userVal } = useContext(UserContext)
 
+  const navigate = useNavigate()
+
+  const getCarritoId = async () => {
+    const response = await fetch(`${API_URL}api/Carrito/carritobyuser/${userVal.userId}`)
+    const responseJson = await response.json()
+    const carritoId = responseJson.carritoId
+    return carritoId
+  }
+
   const loadUserCartProducts = async () => {
     try {
-      const response = await fetch(`${API_URL}api/Carrito/carritobyuser/${userVal.userId}`)
-      const responseJson = await response.json()
-      const carritoId = await responseJson.carritoId
-      
+      const carritoId = await getCarritoId()
       const productsResponse = await fetch(`${API_URL}api/Carrito/productoscarrito/${carritoId}`)
       const productsJson = await productsResponse.json()
 
@@ -31,5 +38,31 @@ export function useCart () {
     }
   }
 
-  return { products, setProducts, loadUserCartProducts }
+  const removeFromCart = async (productId) => {
+    try {
+      const carritoId = await getCarritoId()
+
+      const carritoProduct = {
+        carritoId: carritoId,
+        productId: productId,
+        productAmount: 1
+      }
+      
+      const response = await fetch(`${API_URL}api/Carrito/DeleteProduct`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(carritoProduct)
+      })
+
+      if (response.ok) {
+        navigate(`/cart/${userVal.userId}`)
+      }
+    } catch (error) {
+      console.log('Error: ', error)
+    }
+  }
+
+  return { products, setProducts, loadUserCartProducts, removeFromCart }
 }
