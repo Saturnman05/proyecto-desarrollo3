@@ -14,11 +14,11 @@ export default function App () {
       <Router>
         <NavComponent />
         <Routes>
-          <Route path="/" element={<PaginaInicio />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/product/:productId" element={<Product />} />
-          <Route path="/cart/:userId" element={<Cart />} /> 
+          <Route path='/' element={<PaginaInicio />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/product/:productId' element={<Product />} />
+          <Route path='/cart/:userId' element={<Cart />} /> 
         </Routes>
       </Router>
     </>
