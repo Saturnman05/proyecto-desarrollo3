@@ -1,19 +1,15 @@
 import { useEffect } from 'react'
 import { useProducts } from '../../hooks/useProducts'
 import { useNavigate } from 'react-router-dom'
-import { Button, Container, Col, Card, Row, } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { useCart } from '../../hooks/useCart'
+import { Container, Col, Card, Row, } from 'react-bootstrap'
+import AddRemoveCartButton from '../AddRemoveCartButton'
 
 export default function PaginaInicio () {  
   const { products, loadProducts } = useProducts()
-  const { addToCart, removeFromCart, loadUserCartProducts, isInCart } = useCart()
   const navigate = useNavigate()
 
   useEffect(() => {
     loadProducts()
-    loadUserCartProducts()
   }, [])
 
   return (
@@ -29,15 +25,7 @@ export default function PaginaInicio () {
                   <Card.Body className='d-flex flex-column'>
                     <Card.Title>{product.name}</Card.Title>
                     <Card.Text className='text-muted mb-4'>${product.unitPrice}</Card.Text>
-                    {
-                      (isInCart(product.productId)) ? (
-                        <Button variant='danger' className='mt-auto' onClick={(event) => {removeFromCart(event, product.productId)}}>Remove from Cart</Button>
-                      ) : (
-                        <Button variant='primary' className='mt-auto' onClick={(event) => addToCart(event, product.productId)}>
-                          <FontAwesomeIcon icon={faShoppingCart} /> Add to Cart
-                        </Button>
-                      )
-                    }
+                    <AddRemoveCartButton detailProduct={product} />
                   </Card.Body>
                 </Card>
               </Col>

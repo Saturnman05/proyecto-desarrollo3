@@ -1,17 +1,12 @@
 import { useEffect } from 'react'
 import { useProduct } from '../../hooks/useProducts'
-import { useCart } from '../../hooks/useCart'
-import { Button } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import AddRemoveCartButton from '../AddRemoveCartButton'
 
 export default function Product () {
   const { product, getProduct } = useProduct()
-  const { addToCart, removeFromCart, isInCart, loadUserCartProducts } = useCart()
 
   useEffect(() => {
     getProduct()
-    loadUserCartProducts()
   }, [])
 
   return (
@@ -34,17 +29,7 @@ export default function Product () {
             <p>Product description: {product.description}</p>
             <p>Price: ${product.unitPrice}</p>
             <p>Amount in stock: {product.stock}</p>
-            {
-              (isInCart(product.productId)) ? (
-                <Button variant='danger' className='mt-auto' onClick={(event) => {removeFromCart(event, product.productId)}}>
-                  Remove from Cart
-                </Button>
-              ) : (
-                <Button variant='primary' className='mt-auto' onClick={(event) => addToCart(event, product.productId)}>
-                  <FontAwesomeIcon icon={faShoppingCart} /> Add to Cart
-                </Button>
-              )
-            }
+            <AddRemoveCartButton detailProduct={product} />
           </div>
         ) : (
           <div 
