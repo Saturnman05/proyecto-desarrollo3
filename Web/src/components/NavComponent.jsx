@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faHome, faUser } from '@fortawesome/free-solid-svg-icons'
 
 import { useLogout } from '../hooks/useLogout'
 
@@ -16,23 +16,23 @@ export default function NavComponent () {
   }, [userVal])
 
   return (
-    <Navbar key={'xxl'} expand={'xxl'} className='bg-body-tertiary mb-3'>
+    <Navbar key={'lg'} expand={'lg'} className='bg-body-tertiary mb-3'>
       <Container fluid>
         <Navbar.Brand as={Link} to='/'>CompraNet</Navbar.Brand>
-        <Navbar.Toggle aria-controls='offcanvasNavbar-expand-xxl' />
+        <Navbar.Toggle aria-controls='offcanvasNavbar-expand-lg' />
         <Navbar.Offcanvas
-          id='offcanvasNavbar-expand-xxl'
-          aria-labelledby='offcanvasNavbarLabel-expand-xxl'
+          id='offcanvasNavbar-expand-lg'
+          aria-labelledby='offcanvasNavbarLabel-expand-lg'
           placement='end'
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id='offcanvasNavbarLabel-expand-xxl'>
+            <Offcanvas.Title id='offcanvasNavbarLabel-expand-lg'>
               {menuMessage}
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className='justify-content-end flex-grow-1 pe-3'>
-              <Nav.Link as={Link} to='/'>Home</Nav.Link>
+              <Nav.Link as={Link} to='/'><FontAwesomeIcon icon={faHome} /> Home</Nav.Link>
               {
                 (Number.isInteger(userVal.userId) && userVal.userId > 0) ? (
                   <>
@@ -48,29 +48,7 @@ export default function NavComponent () {
                   </>
                 )
               }
-              <NavDropdown
-                title='Dropdown'
-                id='offcanvasNavbarDropdown-expand-xxl'
-              >
-                <NavDropdown.Item href='#action3'>Action</NavDropdown.Item>
-                <NavDropdown.Item href='#action4'>
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href='#action5'>
-                  Something else here
-                </NavDropdown.Item>
-              </NavDropdown>
             </Nav>
-            <Form className='d-flex'>
-              <Form.Control
-                type='search'
-                placeholder='Search'
-                className='me-2'
-                aria-label='Search'
-              />
-              <Button variant='outline-success' onClick={() => { console.log(userVal); console.log(userVal.userId) }}>Search</Button>
-            </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
