@@ -35,7 +35,7 @@ export function useRegister () {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(registerData),
+        body: JSON.stringify(registerData)
       })
 
       if (!response.ok) {
