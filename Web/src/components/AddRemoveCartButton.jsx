@@ -27,7 +27,13 @@ export default function AddRemoveCartButton ({ detailProduct }) {
             </Button>
           )
         ) : (
-          <Button variant='secondary' className='mt-auto' onClick={(event) => {event.stopPropagation(); alert('Log In to use this functionality')}}>Add to Cart</Button>
+          <Button 
+            variant='secondary' 
+            className='mt-auto' 
+            onClick={(event) => {event.stopPropagation(); alert('Log In to use this functionality')}}
+          >
+            Add to Cart
+          </Button>
         )
       }
     </>
