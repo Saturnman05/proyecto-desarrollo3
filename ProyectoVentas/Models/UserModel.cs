@@ -106,6 +106,8 @@ namespace ProyectoVentas.Models
             con.Open();
             MySqlTransaction transaction = con.BeginTransaction();
 
+            int userId = 0;
+
             try
             {
                 string procedureName = "ppUpsertUsuario";
@@ -121,9 +123,16 @@ namespace ProyectoVentas.Models
                 cmd.Parameters.AddWithValue("pp_rol_id", user.RolId);
                 cmd.Parameters.AddWithValue("pp_full_name", user.FullName);
 
-                // Ejecutar el stored procedure
-                int rowsAffected = cmd.ExecuteNonQuery();
+                // TODO: obtener le id del usuario
+                using MySqlDataReader r = cmd.ExecuteReader();
+                if (r.Read())
+                {
+                    userId = Convert.ToInt32(r["user_id"]);
+                }
+                r.Close();
 
+                // TODO: crear el carrito del usuario
+                if (userId != 0) CarritoModel.CreateCarrito(con, transaction, userId);
                 transaction.Commit();
             }
             catch (Exception ex)
@@ -158,9 +167,9 @@ namespace ProyectoVentas.Models
                 cmd.Parameters.AddWithValue("pp_rol_id", user.RolId);
                 cmd.Parameters.AddWithValue("pp_full_name", user.FullName);
 
-                // Ejecutar el stored procedure
-                int rowsAffected = cmd.ExecuteNonQuery();
-
+                // TODO: obtener le id del usuario
+                cmd.ExecuteNonQuery();
+                
                 transaction.Commit();
             }
             catch (Exception ex)

@@ -36,6 +36,26 @@ namespace ProyectoVentas.Models
             }
         }
 
+        public static void CreateCarrito(MySqlConnection con, MySqlTransaction transaction, int userId)
+        {
+            try
+            {
+                using MySqlCommand cmd = new("ppInsertCarrito", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_user_id", userId);
+
+                // Asociar la transacción activa
+                cmd.Transaction = transaction;
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
         public static CarritoModel GetCarritoById(int carritoId)
         {
             CarritoModel carrito = new();
