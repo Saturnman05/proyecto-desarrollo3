@@ -1,4 +1,4 @@
-import { Button, Container, Card, Col, Row } from 'react-bootstrap'
+import { Button, Container, Table, Image } from 'react-bootstrap'
 import { useEffect } from 'react'
 import { useCart } from '../../hooks/useCart'
 import { useNavigate } from 'react-router-dom'
@@ -11,27 +11,45 @@ export default function Cart () {
   }, [])
 
   return (
-    <Container className='flex-grow-1 py-2'>
-      <h1 className='text-center mb-5'>Cart Page</h1>
-      <Row xs={1} sm={2} md={3} lg={4} className='g-4'>
-        {
-          (cartProducts) ? (
-            cartProducts.map((product) => (
-            <Col key={product.productId}>
-              <Card className='h-100 clickable' onClick={() => navigate(`/product/${product.productId}`)}>
-                <Card.Img variant='top' src={product.imageUrl} />
-                <Card.Body className='d-flex flex-column'>
-                  <Card.Title>{product.name}</Card.Title>
-                  <Card.Text className='text-muted mb-4'>${product.unitPrice}</Card.Text>
-                  <Button variant='danger' className='mt-auto' onClick={(event) => {removeFromCart(event, product.productId)}}>Remove from Cart</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))) : (
-            <p>Error...</p>
-          )
-        }
-      </Row>
+    <Container className="flex-grow-1 py-2">
+      <h1 className="text-center mb-5">Cart Page</h1>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            (cartProducts) ? (
+              cartProducts.map((product) => (
+                <tr key={product.productId} onClick={() => navigate(`/product/${product.productId}`)}>
+                  <td>
+                    <Image src={product.imageUrl} rounded fluid style={{ maxWidth: '100px' }} />
+                  </td>
+                  <td>{product.name}</td>
+                  <td>{product.description}</td>
+                  <td>{product.unitPrice}</td>
+                  <td>
+                    <Button variant="danger" className="mt-auto" onClick={(event) => removeFromCart(event, product.productId)}>
+                      Remove from Cart
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="text-center">
+                  Error...
+                </td>
+              </tr>
+            )
+          }
+        </tbody>
+      </Table>
     </Container>
   )
 }
