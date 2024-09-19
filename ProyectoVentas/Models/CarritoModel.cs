@@ -192,6 +192,7 @@ namespace ProyectoVentas.Models
                 cmd.Parameters.AddWithValue("pp_product_id", null);
                 cmd.Parameters.AddWithValue("pp_name", null);
                 cmd.Parameters.AddWithValue("pp_carrito_id", carritoId);
+                cmd.Parameters.AddWithValue("pp_user_id", null);
 
                 using MySqlDataReader r = cmd.ExecuteReader();
                 while (r.Read())

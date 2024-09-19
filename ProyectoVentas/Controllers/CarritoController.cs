@@ -9,13 +9,6 @@ namespace ProyectoVentas.Controllers
     [ApiController]
     public class CarritoController : ControllerBase
     {
-        // GET: api/<CarritoController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
         [HttpGet("productoscarrito/{id}")]
         public List<ProductModel> GetProducts(int id)
         {

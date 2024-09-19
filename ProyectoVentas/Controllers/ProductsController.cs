@@ -23,6 +23,23 @@ namespace ProyectoVentas.Controllers
             return ProductModel.GetProduct(id);
         }
 
+        [HttpGet("productbyuser/{id}")]
+        public List<ProductModel> GetByUser(int id)
+        {
+            List<ProductModel> products = new();
+
+            try
+            {
+                products = ProductModel.GetProductsByUser(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return products;
+        }
+
         // POST api/<ProductsController>
         [HttpPost]
         public IActionResult Post([FromBody] ProductModel product)

@@ -182,6 +182,50 @@ namespace ProyectoVentas.Models
             return product;
         }
 
+        public static List<ProductModel> GetProductsByUser(int userId)
+        {
+            List<ProductModel> products = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                using MySqlCommand cmd = new("ppSelectProducts", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("pp_product_id", null);
+                cmd.Parameters.AddWithValue("pp_name", null);
+                cmd.Parameters.AddWithValue("pp_carrito_id", null);
+                cmd.Parameters.AddWithValue("pp_user_id", userId);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ProductModel product = new()
+                    {
+                        ProductId = Convert.ToInt32(reader["product_id"].ToString()),
+                        Name = reader["name"].ToString(),
+                        Description = reader["description"].ToString(),
+                        ImageUrl = reader["image_url"].ToString(),
+                        UnitPrice = Convert.ToDecimal(reader["unit_price"].ToString()),
+                        Stock = Convert.ToInt32(reader["stock"].ToString()),
+                        DateCreated = Convert.ToDateTime(reader["date_created"].ToString()),
+                        UserId = Convert.ToInt32(reader["user_id"])
+                    };
+
+                    products.Add(product);
+                }
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                throw new Exception("Error al seleccionar los productos.", ex);
+            }
+
+            con.Close();
+            return products;
+        }
+
         public static void UpdateProduct(ProductModel product)
         {
             using MySqlConnection con = new(Program.connectionString);
