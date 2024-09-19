@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\models\\carritomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\carritomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CarritoModel.cs",
-              "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Models\\CarritoModel.cs",
-              "RelativeDocumentMoniker": "Models\\CarritoModel.cs",
-              "ToolTip": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Models\\CarritoModel.cs",
-              "RelativeToolTip": "Models\\CarritoModel.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAgwDgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T16:43:25.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserModel.cs",
-              "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Models\\UserModel.cs",
-              "RelativeDocumentMoniker": "Models\\UserModel.cs",
-              "ToolTip": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Models\\UserModel.cs",
-              "RelativeToolTip": "Models\\UserModel.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAiwIMAAAAaAAAAAAAAAA==",
+              "Title": "ProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Models\\ProductModel.cs",
+              "RelativeDocumentMoniker": "Models\\ProductModel.cs",
+              "ToolTip": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Models\\ProductModel.cs",
+              "RelativeToolTip": "Models\\ProductModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowLgAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T00:48:37.941Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwB4AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T16:28:44.051Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CarritoController.cs",
-              "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Controllers\\CarritoController.cs",
-              "RelativeDocumentMoniker": "Controllers\\CarritoController.cs",
-              "ToolTip": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Controllers\\CarritoController.cs",
-              "RelativeToolTip": "Controllers\\CarritoController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAzwAwAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T05:21:48.727Z",
+              "WhenOpened": "2024-09-19T23:02:05.441Z",
+              "IsPinned": true,
               "EditorCaption": ""
             }
           ]

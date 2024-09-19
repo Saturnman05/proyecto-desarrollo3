@@ -12,6 +12,7 @@ namespace ProyectoVentas.Models
         public decimal UnitPrice { get; set; }
         public int Stock { get; set; }
         public DateTime DateCreated { get; set; }
+        public int UserId { get; set; }
 
         public static void CreateProduct(ProductModel product)
         {
@@ -35,6 +36,7 @@ namespace ProyectoVentas.Models
                 cmd.Parameters.AddWithValue("pp_unit_price", product.UnitPrice);
                 cmd.Parameters.AddWithValue("pp_stock", product.Stock);
                 cmd.Parameters.AddWithValue("pp_date_created", product.DateCreated);
+                cmd.Parameters.AddWithValue("pp_user_id", product.UserId);
 
                 // Ejecutar el stored procedure
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -65,10 +67,11 @@ namespace ProyectoVentas.Models
                 string procedureName = "ppSelectProducts";
 
                 using MySqlCommand cmd = new(procedureName, con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("pp_product_id", null);
                 cmd.Parameters.AddWithValue("pp_name", null);
                 cmd.Parameters.AddWithValue("pp_carrito_id", null);
+                cmd.Parameters.AddWithValue("pp_user_id", null);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 
@@ -82,7 +85,8 @@ namespace ProyectoVentas.Models
                         ImageUrl = reader["image_url"].ToString(),
                         UnitPrice = Convert.ToDecimal(reader["unit_price"].ToString()),
                         Stock = Convert.ToInt32(reader["stock"].ToString()),
-                        DateCreated = Convert.ToDateTime(reader["date_created"].ToString())
+                        DateCreated = Convert.ToDateTime(reader["date_created"].ToString()),
+                        UserId = Convert.ToInt32(reader["user_id"])
                     };
 
                     products.Add(product);
@@ -116,6 +120,7 @@ namespace ProyectoVentas.Models
                 cmd.Parameters.AddWithValue("pp_product_id", productId);
                 cmd.Parameters.AddWithValue("pp_name", null);
                 cmd.Parameters.AddWithValue("pp_carrito_id", null);
+                cmd.Parameters.AddWithValue("pp_user_id", null);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -127,6 +132,7 @@ namespace ProyectoVentas.Models
                     product.UnitPrice = Convert.ToDecimal(reader["unit_price"].ToString());
                     product.Stock = Convert.ToInt32(reader["stock"].ToString());
                     product.DateCreated = Convert.ToDateTime(reader["date_created"].ToString());
+                    product.UserId = Convert.ToInt32(reader["user_id"]);
                 }
             }
             catch (Exception ex)
@@ -153,6 +159,7 @@ namespace ProyectoVentas.Models
                 cmd.Parameters.AddWithValue("pp_product_id", null);
                 cmd.Parameters.AddWithValue("pp_name", productName);
                 cmd.Parameters.AddWithValue("pp_carrito_id", null);
+                cmd.Parameters.AddWithValue("pp_user_id", null);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -164,6 +171,7 @@ namespace ProyectoVentas.Models
                     product.UnitPrice = Convert.ToDecimal(reader["unit_price"].ToString());
                     product.Stock = Convert.ToInt32(reader["stock"].ToString());
                     product.DateCreated = Convert.ToDateTime(reader["date_created"].ToString());
+                    product.UserId = Convert.ToInt32(reader["user_id"]);
                 }
             }
             catch (Exception ex)
@@ -197,6 +205,7 @@ namespace ProyectoVentas.Models
                 cmd.Parameters.AddWithValue("pp_unit_price", product.UnitPrice);
                 cmd.Parameters.AddWithValue("pp_stock", product.Stock);
                 cmd.Parameters.AddWithValue("pp_date_created", product.DateCreated);
+                cmd.Parameters.AddWithValue("pp_user_id", product.UserId);
 
                 // Ejecutar el stored procedure
                 int rowsAffected = cmd.ExecuteNonQuery();
