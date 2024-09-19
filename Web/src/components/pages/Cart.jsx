@@ -1,7 +1,9 @@
-import { Button, Container, Table, Image } from 'react-bootstrap'
 import { useEffect } from 'react'
-import { useCart } from '../../hooks/useCart'
 import { useNavigate } from 'react-router-dom'
+
+import { Button, Container, Table, Image } from 'react-bootstrap'
+
+import { useCart } from '../../hooks/useCart'
 
 export default function Cart () {
   const { cartProducts, loadUserCartProducts, removeFromCart } = useCart()

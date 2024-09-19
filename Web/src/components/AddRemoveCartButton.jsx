@@ -1,8 +1,10 @@
 import { useContext, useEffect } from 'react'
-import { useCart } from '../hooks/useCart'
+
 import { Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+
+import { useCart } from '../hooks/useCart'
 import { UserContext } from '../context/user'
 
 export default function AddRemoveCartButton ({ detailProduct }) {

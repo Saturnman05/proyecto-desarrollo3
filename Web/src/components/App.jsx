@@ -6,6 +6,7 @@ import Cart from './pages/Cart'
 import Login from './pages/Login'
 import PaginaInicio from './pages/PaginaInicio'
 import Product from './pages/Product'
+import PublishProduct from './pages/PublishProduct'
 import Register from './pages/Register'
 
 export default function App () {
@@ -18,7 +19,8 @@ export default function App () {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/product/:productId' element={<Product />} />
-          <Route path='/cart/:userId' element={<Cart />} /> 
+          <Route path='/cart/:userId' element={<Cart />} />
+          <Route path='/publish-product' element={<PublishProduct />}/>
         </Routes>
       </Router>
     </>

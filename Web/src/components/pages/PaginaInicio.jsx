@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
-import { useProducts } from '../../hooks/useProducts'
 import { useNavigate } from 'react-router-dom'
+
 import { Container, Col, Card, Row, } from 'react-bootstrap'
+
+import { useProducts } from '../../hooks/useProducts'
 import AddRemoveCartButton from '../AddRemoveCartButton'
 
 export default function PaginaInicio () {  
