@@ -1,13 +1,10 @@
 import { useContext, useState } from 'react'
 import { API_URL } from '../constants/constantes'
 import { UserContext } from '../context/user'
-import { useNavigate } from 'react-router-dom'
 
 export function useCart () {
   const [products, setProducts] = useState([])
   const { userVal } = useContext(UserContext)
-
-  const navigate = useNavigate()
 
   const getCarritoId = async () => {
     const response = await fetch(`${API_URL}api/Carrito/carritobyuser/${userVal.userId}`)
@@ -87,7 +84,6 @@ export function useCart () {
       })
 
       if (response.ok) {
-        // navigate(`cart/${userVal.userId}`)
         loadUserCartProducts()
       }
     } catch (error) {
