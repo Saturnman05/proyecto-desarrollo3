@@ -4,6 +4,7 @@ import NavComponent from './NavComponent'
 
 import Cart from './pages/Cart'
 import Login from './pages/Login'
+import MyProduct from './pages/MyProduct'
 import PaginaInicio from './pages/PaginaInicio'
 import Product from './pages/Product'
 import PublishProduct from './pages/PublishProduct'
@@ -20,6 +21,7 @@ export default function App () {
           <Route path='/register' element={<Register />} />
           <Route path='/product/:productId' element={<Product />} />
           <Route path='/cart/:userId' element={<Cart />} />
+          <Route path='/my-product' element={<MyProduct />} />
           <Route path='/publish-product' element={<PublishProduct />}/>
         </Routes>
       </Router>

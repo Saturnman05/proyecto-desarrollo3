@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
+import { Container, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faHome, faUser } from '@fortawesome/free-solid-svg-icons'
 
@@ -39,7 +39,11 @@ export default function NavComponent () {
                     <Nav.Link as={Link} to={`cart/${userVal.userId}`}>
                       <FontAwesomeIcon icon={faShoppingCart} /> My Cart
                     </Nav.Link>
-                    <Nav.Link as={Link} to='/publish-product'>Publish Product</Nav.Link>
+                    <NavDropdown title='Product' id='basic-nav-dropdown'>
+                      <NavDropdown.Item as={Link} to='/my-product' style={{ color: 'red' }}>My Products</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/' style={{ color: 'red' }}>Publish Product</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/' style={{ color: 'red' }}>Bought</NavDropdown.Item>
+                    </NavDropdown>
                     <Nav.Link as={Link} to='/' onClick={() => logout()}>Log Out</Nav.Link>
                   </>
                 ) : (
