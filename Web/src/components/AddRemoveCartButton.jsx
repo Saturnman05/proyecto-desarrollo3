@@ -20,7 +20,7 @@ export default function AddRemoveCartButton ({ detailProduct }) {
       {
         (Number.isInteger(userVal.userId)) ? (
           (isInCart(detailProduct.productId)) ? (
-            <Button variant='danger' className='mt-auto' onClick={(event) => {removeFromCart(event, detailProduct.productId)}}>
+            <Button variant='outline-danger' className='mt-auto' onClick={(event) => {removeFromCart(event, detailProduct.productId)}}>
               Remove from Cart
             </Button>
           ) : (

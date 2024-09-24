@@ -1,7 +1,9 @@
 import { useContext, useEffect } from 'react'
+import { Button, Card, Container, Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+
 import { useProducts } from '../../hooks/useProducts'
 import { UserContext } from '../../context/user'
-import { Container, Card, Col, Row } from 'react-bootstrap'
 
 export default function MyProduct () {
   const { products, setProducts, loadProducts } = useProducts()
@@ -24,6 +26,11 @@ export default function MyProduct () {
   return (
     <Container className='flex-grow-1 py-2'>
       <h1 className='text-center mb-5'>My Products</h1>
+
+      <Link to='/publish-product'>
+        <Button variant='outline-primary' style={{ marginBottom: '15px'}}>Publish Product</Button>
+      </Link>
+      
       <Row xs={1} sm={2} md={3} lg={4} className='g-4'>
         {
           products.map(product => (
