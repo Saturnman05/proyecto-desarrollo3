@@ -1,5 +1,5 @@
 import { Alert, Button, Form } from 'react-bootstrap'
-import { useLogin } from '../../hooks/useLogin';
+import { useLogin } from '../../hooks/useLogin'
 
 import './Login.css'
 

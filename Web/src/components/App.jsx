@@ -1,32 +1,33 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
 
 import NavComponent from './NavComponent'
 
-import BoughtProducts from './pages/BoughtProducts'
-import Cart from './pages/Cart'
-import Login from './pages/Login'
-import MyProduct from './pages/MyProduct'
-import PaginaInicio from './pages/PaginaInicio'
-import Product from './pages/Product'
-import PublishProduct from './pages/PublishProduct'
-import Register from './pages/Register'
+const BoughtProducts = lazy(() => import('./pages/BoughtProducts'))
+const Cart = lazy(() => import('./pages/Cart'))
+const Login = lazy(() => import('./pages/Login'))
+const MyProduct = lazy(() => import('./pages/MyProduct'))
+const PaginaInicio = lazy(() => import('./pages/PaginaInicio'))
+const Product = lazy(() => import('./pages/Product'))
+const PublishProduct = lazy(() => import('./pages/PublishProduct'))
+const Register = lazy(() => import('./pages/Register'))
 
 export default function App () {
   return (
-    <>
-      <Router>
-        <NavComponent />
+    <Router>
+      <NavComponent />
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path='/' element={<PaginaInicio />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/product/:productId' element={<Product />} />
-          <Route path='/cart/:userId' element={<Cart />} />
+          <Route path='/cart' element={<Cart />} />
           <Route path='/my-product' element={<MyProduct />} />
           <Route path='/bought' element={<BoughtProducts />} />
-          <Route path='/publish-product' element={<PublishProduct />}/>
+          <Route path='/publish-product' element={<PublishProduct />} />
         </Routes>
-      </Router>
-    </>
+      </Suspense>
+    </Router>
   )
 }

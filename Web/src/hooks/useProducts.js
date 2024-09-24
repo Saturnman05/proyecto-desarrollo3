@@ -47,3 +47,18 @@ export function useProduct () {
 
   return { product, getProduct }
 }
+
+export function usePublishProduct () {
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
+  const [unitPrice, setUnitPrice] = useState(0)
+  const [stock, setStock] = useState(0)
+
+  const handleSubmit = (event) => {
+    event?.preventDefault()
+    console.log('hola')
+  }
+
+  return { name, setName, description, setDescription, imageUrl, setImageUrl, unitPrice, setUnitPrice, stock, setStock, handleSubmit }
+}
