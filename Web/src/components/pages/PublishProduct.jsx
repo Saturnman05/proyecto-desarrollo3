@@ -4,7 +4,7 @@ import { usePublishProduct } from '../../hooks/useProducts'
 import './PublishProduct.css'
 
 export default function PublishProduct () {
-  const { name, setName, description, setDescription, imageUrl, setImageUrl, unitPrice, setUnitPrice, stock, setStock, handleSubmit } = usePublishProduct()
+  const { product, setProduct, handleSubmit } = usePublishProduct()
 
   return (
     <main className='center-column-publish'>
@@ -13,27 +13,27 @@ export default function PublishProduct () {
         <Form onSubmit={handleSubmit} method='post'>
           <Form.Group className='mb-3'>
             <Form.Label>Name</Form.Label>
-            <Form.Control onChange={(n) => {setName(n.target.value)}} placeholder='Product name' value={name} />
+            <Form.Control onChange={(n) => {setProduct({ ...product, name: n.target.value })}} placeholder='Product name' value={product.name} />
           </Form.Group>
 
           <Form.Group className='mb-3'>
             <Form.Label>Description</Form.Label>
-            <Form.Control as='textarea' onChange={(d) => {setDescription(d.target.value)}} rows={3} value={description} />
+            <Form.Control as='textarea' onChange={(d) => {setProduct({ ...product, description: d.target.value })}} rows={3} value={product.description} />
           </Form.Group>
 
           <Form.Group className='mb-3'>
             <Form.Label>Image URL</Form.Label>
-            <Form.Control onChange={(i) => {setImageUrl(i.target.value)}} value={imageUrl} />
+            <Form.Control onChange={(i) => {setProduct({ ...product, imageUrl: i.target.value })}} value={product.imageUrl} />
           </Form.Group>
 
           <Form.Group className='mb-3'>
             <Form.Label>Unit Price</Form.Label>
-            <Form.Control type='number' step='0.01' onChange={(u) => setUnitPrice(u.target.value)} value={unitPrice} />
+            <Form.Control type='number' step='0.01' onChange={(u) => setProduct({ ...product, unitPrice: parseFloat(u.target.value)} )} value={product.unitPrice} />
           </Form.Group>
 
           <Form.Group className='mb-3'>
             <Form.Label>Stock</Form.Label>
-            <Form.Control type='number' step='1' min='0' onChange={(s) => setStock(parseInt(s.target.value, 10))} value={stock} />
+            <Form.Control type='number' step='1' min='0' onChange={(s) => setProduct({ ...product, stock: parseInt(s.target.value, 10) })} value={product.stock} />
           </Form.Group>
 
           <Button variant='primary' type='submit'>Publish</Button>

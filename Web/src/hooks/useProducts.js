@@ -49,16 +49,12 @@ export function useProduct () {
 }
 
 export function usePublishProduct () {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
-  const [unitPrice, setUnitPrice] = useState(0)
-  const [stock, setStock] = useState(0)
+  const [product, setProduct] = useState({ name: '', description: '', imageUrl: '', unitPrice: 0, stock: 0 })
 
   const handleSubmit = (event) => {
     event?.preventDefault()
-    console.log('hola')
+    console.log(product)
   }
 
-  return { name, setName, description, setDescription, imageUrl, setImageUrl, unitPrice, setUnitPrice, stock, setStock, handleSubmit }
+  return { product, setProduct, handleSubmit }
 }
