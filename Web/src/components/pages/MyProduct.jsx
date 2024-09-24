@@ -21,7 +21,7 @@ export default function MyProduct () {
     }
 
     fetchAndFilterProducts()
-  }, [userVal.userId])
+  }, [])
 
   return (
     <Container className='flex-grow-1 py-2'>
