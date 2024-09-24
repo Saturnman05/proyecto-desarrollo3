@@ -7,6 +7,7 @@ import { API_URL } from '../constants/constantes'
 export function useLogin () {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('') // Estado para el error
   const navigate = useNavigate()
 
   const { setUserVal } = useContext(UserContext)
@@ -30,16 +31,22 @@ export function useLogin () {
 
       if (response.ok){
         const userData = await response.json()
+
+        if (userData.userId && userData.userId !== 0) {
+          setUserVal({ userId: userData.userId, userName: userData.userName, fullName: userData.fullName, password: userData.password })
+          navigate('/')
+        } else {
+          setError('Error logging in: incorrect data')
+        }
         console.log(userData)
-        setUserVal({ userId: userData.userId, userName: userData.userName, fullName: userData.fullName, password: userData.password })
-        
-        // redirigir con el user a la pagina de inicio
-        navigate('/')
+      } else {
+        setError('Error logging in: server response was not successful')
       }
     } catch (error) {
-      console.error('Error al realizar la solicitud', error)
+      console.error('Error al realizar el login', error)
+      setError('Error logging in: An unexpected error occurred')
     }
   }
 
-  return { username, setUsername, password, setPassword, handleSubmit }
+  return { username, setUsername, password, setPassword, handleSubmit, error }
 }

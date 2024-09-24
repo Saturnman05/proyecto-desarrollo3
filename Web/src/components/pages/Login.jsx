@@ -1,10 +1,10 @@
-import { Button, Form } from 'react-bootstrap'
+import { Alert, Button, Form } from 'react-bootstrap'
 import { useLogin } from '../../hooks/useLogin';
 
 import './Login.css'
 
 export default function Login () {
-  const { username, setUsername, password, setPassword, handleSubmit } = useLogin()
+  const { username, setUsername, password, setPassword, handleSubmit, error } = useLogin()
 
   return (
     <main className='center-column'>
@@ -24,6 +24,7 @@ export default function Login () {
           <Button variant='primary' type='submit'>Log In</Button>
         </Form>
       </div>
+      {error && <Alert variant='danger' className='mt-3 alert'>{error}</Alert>}
     </main>
   )
 }

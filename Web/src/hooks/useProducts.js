@@ -16,7 +16,8 @@ export function useProducts () {
       imageUrl: product.imageUrl,
       unitPrice: product.unitPrice,
       stock: product.stock,
-      dateCreated: product.dateCreated
+      dateCreated: product.dateCreated,
+      userId: product.userId
     }))
     
     setProducts(productsList)
