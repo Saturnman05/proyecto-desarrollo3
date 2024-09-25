@@ -58,9 +58,7 @@ export default function Cart () {
         </tbody>
       </Table>
       
-      <Link to='/buy-products'>
-        <Button variant='primary' className='mt-3'>Buy</Button>
-      </Link>
+      {totalPrice > 0 && <Link to='/buy-products'><Button variant='primary' className='mt-3'>Buy</Button></Link>}
     </Container>
   )
 }
