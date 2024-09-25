@@ -97,8 +97,7 @@ export function useCart () {
     return products.some(cartProduct => cartProduct.productId === productId)
   }
 
-  const buyCart = async (rnc, totalPrice) => {
-    // TODO: comprar productos del carrito
+  const buyCart = async (rnc) => {
     console.log(products)
 
     const productsName = []
