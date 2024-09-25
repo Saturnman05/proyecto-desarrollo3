@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { Button, Card, Container, Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useProducts } from '../../hooks/useProducts'
 import { UserContext } from '../../context/user'
@@ -8,6 +8,8 @@ import { UserContext } from '../../context/user'
 export default function MyProduct () {
   const { products, loadProducts } = useProducts()
   const { userVal } = useContext(UserContext)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     loadProducts()
