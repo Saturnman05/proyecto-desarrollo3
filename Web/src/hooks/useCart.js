@@ -102,6 +102,7 @@ export function useCart () {
 
     const productsName = []
     for (let product of products) {
+      product.stock--
       productsName.push(product.name)
     }
 
