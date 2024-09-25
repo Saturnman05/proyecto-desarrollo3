@@ -6,7 +6,7 @@ export function useCart () {
   const [products, setProducts] = useState([])
   const { userVal } = useContext(UserContext)
 
-  const totalPrice = cartProducts ? cartProducts.reduce((total, product) => total + product.unitPrice, 0) : 0
+  const totalPrice = products ? products.reduce((total, product) => total + product.unitPrice, 0) : 0
 
   const getCarritoId = async () => {
     const response = await fetch(`${API_URL}api/Carrito/carritobyuser/${userVal.userId}`)

@@ -6,7 +6,7 @@ import { Button, Container, Table, Image } from 'react-bootstrap'
 import { useCart } from '../../hooks/useCart'
 
 export default function Cart () {
-  const { cartProducts, loadUserCartProducts, removeFromCart, totalPrice, buyCart } = useCart()
+  const { cartProducts, loadUserCartProducts, removeFromCart, totalPrice } = useCart()
   const navigate = useNavigate()
 
   useEffect(() => {
