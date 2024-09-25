@@ -1,19 +1,17 @@
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { Button, Container, Table, Image } from 'react-bootstrap'
 
 import { useCart } from '../../hooks/useCart'
 
 export default function Cart () {
-  const { cartProducts, loadUserCartProducts, removeFromCart } = useCart()
+  const { cartProducts, loadUserCartProducts, removeFromCart, totalPrice, buyCart } = useCart()
   const navigate = useNavigate()
 
   useEffect(() => {
     loadUserCartProducts()
   }, [])
-
-  const totalPrice = cartProducts ? cartProducts.reduce((total, product) => total + product.unitPrice, 0) : 0
 
   return (
     <Container className="flex-grow-1 py-2">
@@ -59,6 +57,10 @@ export default function Cart () {
           </tr>
         </tbody>
       </Table>
+      
+      <Link to='buy-products'>
+        <Button variant='primary' className='mt-3'>Buy</Button>
+      </Link>
     </Container>
   )
 }
