@@ -97,12 +97,15 @@ export function useCart () {
     return products.some(cartProduct => cartProduct.productId === productId)
   }
 
+  const unLoadCart = async () => {
+
+  }
+
   const buyCart = async (rnc) => {
     console.log(products)
 
     const productsName = []
     for (let product of products) {
-      product.stock--
       productsName.push(product.name)
     }
 
@@ -127,6 +130,11 @@ export function useCart () {
       })
 
       if (response.ok) {
+        for (let product of product) {
+          product.stock--
+          // TODO: update products para que se guarde en la base de datos
+        }
+        unLoadCart()
         console.log('success')
       }
     } catch (error) {

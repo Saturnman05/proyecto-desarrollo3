@@ -21,7 +21,7 @@ export function useProducts () {
       userId: product.userId
     }))
     
-    setProducts(productsList)
+    setProducts(productsList.filter(product => product.stock > 0))
   }
 
   return { products, setProducts, loadProducts }
