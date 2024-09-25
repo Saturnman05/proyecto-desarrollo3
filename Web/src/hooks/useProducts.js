@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { API_URL } from '../constants/constantes'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { UserContext } from '../context/user'
 
 export function useProducts () {
   const [products, setProducts] = useState([])
@@ -50,10 +51,39 @@ export function useProduct () {
 
 export function usePublishProduct () {
   const [product, setProduct] = useState({ name: '', description: '', imageUrl: '', unitPrice: 0, stock: 0 })
+  const { userVal } = useContext(UserContext)
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate()
+
+  const handleSubmit = async (event) => {
     event?.preventDefault()
-    console.log(product)
+    console.log(userVal)
+    const productData = {
+      productId: 0,
+      name: product.name,
+      description: product.description,
+      imageUrl: product.imageUrl,
+      unitPrice: product.unitPrice,
+      stock: product.stock,
+      dateCreated: new Date().toISOString(),
+      userId: userVal.userId
+    }
+
+    try {
+      const response = await fetch(`${API_URL}api/Products`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(productData),
+      })
+
+      if (response.ok) {
+        navigate('/my-product')
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return { product, setProduct, handleSubmit }

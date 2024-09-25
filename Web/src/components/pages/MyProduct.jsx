@@ -6,7 +6,7 @@ import { useProducts } from '../../hooks/useProducts'
 import { UserContext } from '../../context/user'
 
 export default function MyProduct () {
-  const { products, setProducts, loadProducts } = useProducts()
+  const { products, loadProducts } = useProducts()
   const { userVal } = useContext(UserContext)
 
   useEffect(() => {
