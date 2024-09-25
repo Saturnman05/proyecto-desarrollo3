@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { Container, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faHome, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faHome } from '@fortawesome/free-solid-svg-icons'
 
 import { useLogout } from '../hooks/useLogout'
 
