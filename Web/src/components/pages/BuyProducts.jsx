@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useCart } from '../../hooks/useCart'
+import jsPDF from 'jspdf'
 
 export default function BuyProducts () {
   const { cartProducts, totalPrice, loadUserCartProducts, buyCart } = useCart() // Usa las funciones necesarias del hook useCart
@@ -10,10 +11,28 @@ export default function BuyProducts () {
     loadUserCartProducts()
   }, [])
 
+  const generatePDF = (rnc) => {
+    const doc = new jsPDF()
+    doc.setFontSize(18)
+    doc.text('Factura', 20, 20)
+
+    doc.setFontSize(12)
+    doc.text(`RNC: ${rnc}`, 20, 30)
+    doc.text(`Total: $${totalPrice}`, 20, 40)
+
+    doc.text('Productos:', 20, 50)
+    cartProducts.forEach((product, index) => {
+      doc.text(`${index + 1}. ${product.name} - $${product.unitPrice}`, 20, 60 + index * 10)
+    })
+
+    doc.save('factura.pdf') // Guarda el archivo como "factura.pdf"
+  }
+
   const handleBuy = (e) => {
     e.preventDefault()
     if (rnc && totalPrice > 0) {
       buyCart(rnc)
+      generatePDF(rnc)
     } else {
       console.log('RNC es requerido o el carrito está vacío')
     }
