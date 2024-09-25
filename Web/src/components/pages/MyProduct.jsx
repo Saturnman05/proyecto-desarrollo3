@@ -10,17 +10,7 @@ export default function MyProduct () {
   const { userVal } = useContext(UserContext)
 
   useEffect(() => {
-    const fetchAndFilterProducts = async () => {
-      await loadProducts()
-      const filteredProducts = products.filter(product => product.userId === userVal.userId)
-
-      // Solo actualizamos los productos si hay cambios para evitar bucles infinitos
-      if (filteredProducts && JSON.stringify(filteredProducts) !== JSON.stringify(products)) {
-        setProducts(filteredProducts)
-      }
-    }
-
-    fetchAndFilterProducts()
+    loadProducts()
   }, [])
 
   return (
@@ -32,19 +22,30 @@ export default function MyProduct () {
       </Link>
       
       <Row xs={1} sm={2} md={3} lg={4} className='g-4'>
-        {
-          products.map(product => (
-            <Col key={product.productId}>
-                <Card className='h-100 clickable' onClick={() => navigate(`/product/${product.productId}`)}>
-                  <Card.Img variant='top' src={product.imageUrl} />
-                  <Card.Body className='d-flex flex-column'>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text className='text-muted mb-4'>${product.unitPrice}</Card.Text>
-                  </Card.Body>
-                </Card>
-            </Col>
-          ))
-        }
+      {
+        products && products.length > 0 ? (
+          (() => {
+            const filteredProducts = products.filter(product => product.userId === userVal.userId)
+            return filteredProducts.length > 0 ? (
+              filteredProducts.map(product => (
+                <Col key={product.productId}>
+                  <Card className='h-100 clickable' onClick={() => navigate(`/product/${product.productId}`)}>
+                    <Card.Img variant='top' src={product.imageUrl} />
+                    <Card.Body className='d-flex flex-column'>
+                      <Card.Title>{product.name}</Card.Title>
+                      <Card.Text className='text-muted mb-4'>${product.unitPrice}</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))
+            ) : (
+              <p>No products published</p>
+            )
+          })()
+        ) : (
+          <p>No products published</p>
+        )
+      }
       </Row>
     </Container>
   )
