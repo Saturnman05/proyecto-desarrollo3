@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useCart } from '../hooks/useCart'
+import { useCart } from '../../hooks/useCart'
 
 export default function BuyProducts () {
   const { cartProducts, totalPrice, loadUserCartProducts, buyCart } = useCart() // Usa las funciones necesarias del hook useCart

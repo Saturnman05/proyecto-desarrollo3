@@ -108,11 +108,13 @@ export function useCart () {
     const facturaData = {
       facturaId: 0,
       rnc: rnc,
-      emissionDate: '',
+      emissionDate: new Date().toISOString(),
       totalPrice: totalPrice,
       userId: userVal.userId,
       productos: productsName
     }
+
+    console.log(JSON.stringify(facturaData))
 
     try {
       const response = await fetch(`${API_URL}api/Facturas`, {
