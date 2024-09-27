@@ -6,7 +6,7 @@ import { UserContext } from '../context/user'
 export function useProducts () {
   const [products, setProducts] = useState([])
 
-  const loadProducts = async () => {
+  const loadProducts = async (filtrar) => {
     const allProductsResponse = await fetch(`${API_URL}api/Products`)
     const productsJson = await allProductsResponse.json()
 
@@ -21,7 +21,7 @@ export function useProducts () {
       userId: product.userId
     }))
     
-    setProducts(productsList.filter(product => product.stock > 0))
+    setProducts(filtrar ? productsList.filter(product => product.stock > 0) : productsList)
   }
 
   return { products, setProducts, loadProducts }

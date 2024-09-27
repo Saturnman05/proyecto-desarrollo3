@@ -12,7 +12,7 @@ export default function MyProduct () {
   const navigate = useNavigate()
 
   useEffect(() => {
-    loadProducts()
+    loadProducts(false)
   }, [])
 
   return (

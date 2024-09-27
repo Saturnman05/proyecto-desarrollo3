@@ -15,6 +15,7 @@ export function useCart () {
     return carritoId
   }
 
+  // aqui esta el error del userId
   const loadUserCartProducts = async () => {
     try {
       const carritoId = await getCarritoId()
@@ -28,7 +29,8 @@ export function useCart () {
         imageUrl: product.imageUrl,
         unitPrice: product.unitPrice,
         stock: product.stock,
-        dateCreated: product.dateCreated
+        dateCreated: product.dateCreated,
+        userId: product.userId
       }))
 
       setProducts(productsList)
@@ -38,10 +40,11 @@ export function useCart () {
   }
 
   const removeFromCart = async (event, productId) => {
-    event.stopPropagation()
+    event?.stopPropagation()
 
     try {
       const carritoId = await getCarritoId()
+      console.log('id del carrito', carritoId)
 
       const carritoProduct = {
         carritoId: carritoId,
@@ -97,17 +100,42 @@ export function useCart () {
     return products.some(cartProduct => cartProduct.productId === productId)
   }
 
-  const unLoadCart = async () => {
+  const updateProduct = async (product) => {
+    // TODO: terminar esta funcion
+    // Creo que ya esta terminada
+    const productData = {
+      productId: product.productId,
+      name: product.name,
+      description: product.description,
+      imageUrl: product.imageUrl,
+      unitPrice: product.unitPrice,
+      stock: product.stock,
+      dateCreated: product.dateCreated,
+      userId: product.userId
+    }
 
+    try {
+      const response = await fetch(`${API_URL}api/products/${product.productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productData)
+      })
+
+      if (response.ok) {
+        console.log('succes')
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
+  
 
   const buyCart = async (rnc) => {
     console.log(products)
 
-    const productsName = []
-    for (let product of products) {
-      productsName.push(product.name)
-    }
+    const productsName = products?.map(product => product.name)
 
     const facturaData = {
       facturaId: 0,
@@ -130,11 +158,12 @@ export function useCart () {
       })
 
       if (response.ok) {
-        for (let product of product) {
+        for (let product of products) {
           product.stock--
           // TODO: update products para que se guarde en la base de datos
+          await updateProduct(product)
+          await removeFromCart(null, product)
         }
-        unLoadCart()
         console.log('success')
       }
     } catch (error) {

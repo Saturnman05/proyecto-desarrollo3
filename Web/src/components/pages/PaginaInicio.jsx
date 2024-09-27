@@ -11,7 +11,7 @@ export default function PaginaInicio () {
   const navigate = useNavigate()
 
   useEffect(() => {
-    loadProducts()
+    loadProducts(true)
   }, [])
 
   return (
