@@ -15,7 +15,6 @@ export function useCart () {
     return carritoId
   }
 
-  // aqui esta el error del userId
   const loadUserCartProducts = async () => {
     try {
       const carritoId = await getCarritoId()
