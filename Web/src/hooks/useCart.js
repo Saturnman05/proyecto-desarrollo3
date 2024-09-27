@@ -43,7 +43,6 @@ export function useCart () {
 
     try {
       const carritoId = await getCarritoId()
-      console.log('id del carrito', carritoId)
 
       const carritoProduct = {
         carritoId: carritoId,
@@ -159,9 +158,8 @@ export function useCart () {
       if (response.ok) {
         for (let product of products) {
           product.stock--
-          // TODO: update products para que se guarde en la base de datos
           await updateProduct(product)
-          await removeFromCart(null, product)
+          await removeFromCart(null, product.productId)
         }
         console.log('success')
       }
