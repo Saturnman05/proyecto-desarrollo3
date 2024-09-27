@@ -37,6 +37,8 @@ export default function MyProduct () {
                       <Card.Title>{product.name}</Card.Title>
                       <Card.Text className='text-muted mb-4'>${product.unitPrice}</Card.Text>
                     </Card.Body>
+                    <Button variant='secondary'>+</Button>
+                    <Button variant='secondary'>-</Button>
                   </Card>
                 </Col>
               ))
