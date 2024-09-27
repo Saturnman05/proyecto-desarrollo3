@@ -205,7 +205,8 @@ namespace ProyectoVentas.Models
                         UnitPrice = Convert.ToDecimal(r["unit_price"].ToString()),
                         Stock = Convert.ToInt32(r["stock"].ToString()),
                         DateCreated = Convert.ToDateTime(r["date_created"].ToString()),
-                        ImageUrl = r["image_url"].ToString()
+                        ImageUrl = r["image_url"].ToString(),
+                        UserId = Convert.ToInt32(r["user_id"].ToString()),
                     };
 
                     productos.Add(producto);
