@@ -6,7 +6,7 @@ export default function Product () {
   const { product, getProduct } = useProduct()
 
   useEffect(() => {
-    getProduct()
+    getProduct(null)
   }, [])
 
   return (

@@ -6,7 +6,7 @@ import { useProducts } from '../../hooks/useProducts'
 import { UserContext } from '../../context/user'
 
 export default function MyProduct () {
-  const { products, loadProducts } = useProducts()
+  const { products, setProducts, loadProducts, updateProductStock } = useProducts()
   const { userVal } = useContext(UserContext)
 
   const navigate = useNavigate()
@@ -14,6 +14,26 @@ export default function MyProduct () {
   useEffect(() => {
     loadProducts(false)
   }, [])
+
+  const handleIncreaseStock = async (productId) => {
+    await updateProductStock(productId, 1)
+
+    setProducts(products => 
+      products.map(product => 
+        product.productId === productId ? { ...product, stock: product.stock + 1} : product
+      )
+    )
+  }
+
+  const handleDecreaseStock = async (productId) => {
+    await updateProductStock(productId, -1)
+
+    setProducts(products => 
+      products.map(product => 
+        product.productId === productId ? { ...product, stock: product.stock - 1} : product
+      )
+    )
+  }
 
   return (
     <Container className='flex-grow-1 py-2'>
@@ -36,9 +56,18 @@ export default function MyProduct () {
                     <Card.Body className='d-flex flex-column'>
                       <Card.Title>{product.name}</Card.Title>
                       <Card.Text className='text-muted mb-4'>${product.unitPrice}</Card.Text>
+                      <Card.Text className='text-muted mb-4'>Stock: {product.stock}</Card.Text>
                     </Card.Body>
-                    <Button variant='secondary'>+</Button>
-                    <Button variant='secondary'>-</Button>
+                    <div className='d-flex justify-content-between px-5 pb-3'>
+                      <Button variant='danger' onClick={(e) => {
+                        e.stopPropagation()
+                        handleDecreaseStock(product.productId)
+                      }}>-</Button>
+                      <Button variant='primary' onClick={(e) => {
+                        e.stopPropagation()
+                        handleIncreaseStock(product.productId)
+                      }}>+</Button>
+                    </div>
                   </Card>
                 </Col>
               ))

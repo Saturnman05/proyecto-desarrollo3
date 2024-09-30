@@ -5,6 +5,7 @@ import { UserContext } from '../context/user'
 
 export function useProducts () {
   const [products, setProducts] = useState([])
+  const { getProduct } = useProduct()
 
   const loadProducts = async (filtrar) => {
     const allProductsResponse = await fetch(`${API_URL}api/Products`)
@@ -24,22 +25,47 @@ export function useProducts () {
     setProducts(filtrar ? productsList.filter(product => product.stock > 0) : productsList)
   }
 
-  return { products, setProducts, loadProducts }
+  const updateProductStock = async (productId, stockAdd) => {
+    try {
+      const productData = await getProduct(productId)
+      const newStock = productData.stock + stockAdd
+      productData.stock = newStock
+
+      const response = await fetch(`${API_URL}api/Products/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productData)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return { products, setProducts, loadProducts, updateProductStock }
 }
 
 export function useProduct () {
   const { productId } = useParams()
   const [product, setProduct] = useState(null)
 
-  const getProduct = async () => {
+  const getProduct = async (thisProductId) => {
+    const prodId = (thisProductId) ? thisProductId : productId
+
     try {
-      const response = await fetch(`${API_URL}api/Products/${productId}`)
+      const response = await fetch(`${API_URL}api/Products/${prodId}`)
 
       if (!response.ok) {
         throw new Error('Error al obtener los datos del producto')
       }
 
       const productData = await response.json()
+      
+      if (thisProductId) {
+        return productData
+      }
+
       setProduct(productData)
     } catch (error) {
       console.log('Error:', error)
