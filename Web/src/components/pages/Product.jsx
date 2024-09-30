@@ -1,9 +1,12 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useProduct } from '../../hooks/useProducts'
 import AddRemoveCartButton from '../AddRemoveCartButton'
+import { UserContext } from '../../context/user'
+import { Button } from 'react-bootstrap'
 
 export default function Product () {
   const { product, getProduct } = useProduct()
+  const { userVal } = useContext(UserContext)
 
   useEffect(() => {
     getProduct(null)
@@ -30,6 +33,7 @@ export default function Product () {
             <p>Price: ${product.unitPrice}</p>
             <p>Amount in stock: {product.stock}</p>
             <AddRemoveCartButton detailProduct={product} />
+            {product.userId === userVal.userId && <Button variant='warning'>Edit</Button>}
           </div>
         ) : (
           <div 

@@ -68,6 +68,7 @@ export default function MyProduct () {
                         handleIncreaseStock(product.productId)
                       }}>+</Button>
                     </div>
+                    <Button variant='warning'>Edit Product</Button>
                   </Card>
                 </Col>
               ))
