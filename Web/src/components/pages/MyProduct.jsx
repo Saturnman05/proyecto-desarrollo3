@@ -68,7 +68,9 @@ export default function MyProduct () {
                         handleIncreaseStock(product.productId)
                       }}>+</Button>
                     </div>
-                    <Button variant='warning'>Edit Product</Button>
+                    <Button variant='warning' onClick={(e) => {e.stopPropagation(); navigate('/publish-product', { state: { edit: true, product: product }})}}>
+                      Edit
+                    </Button>
                   </Card>
                 </Col>
               ))
