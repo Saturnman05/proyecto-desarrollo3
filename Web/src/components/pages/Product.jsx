@@ -3,10 +3,13 @@ import { useProduct } from '../../hooks/useProducts'
 import AddRemoveCartButton from '../AddRemoveCartButton'
 import { UserContext } from '../../context/user'
 import { Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 export default function Product () {
   const { product, getProduct } = useProduct()
   const { userVal } = useContext(UserContext)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     getProduct(null)
@@ -33,7 +36,11 @@ export default function Product () {
             <p>Price: ${product.unitPrice}</p>
             <p>Amount in stock: {product.stock}</p>
             <AddRemoveCartButton detailProduct={product} />
-            {product.userId === userVal.userId && <Button variant='warning'>Edit</Button>}
+            {product.userId === userVal.userId && (
+              <Button variant='warning' onClick={() => navigate('/publish-product', { state: { edit: true, product: product }})}>
+                Edit
+              </Button>
+            )}
           </div>
         ) : (
           <div 

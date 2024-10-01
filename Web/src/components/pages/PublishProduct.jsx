@@ -2,15 +2,24 @@ import { Button, Form } from 'react-bootstrap'
 import { usePublishProduct } from '../../hooks/useProducts'
 
 import './PublishProduct.css'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export default function PublishProduct () {
   const { product, setProduct, handleSubmit } = usePublishProduct()
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.edit) {
+      setProduct(location.state.product)
+    }
+  }, [location.state])
 
   return (
     <main className='center-column-publish'>
-      <h1>Publish Product</h1>
+      {location.state?.edit ? <h1>Edit product</h1> : <h1>Publish Product</h1>}
       <div className='publish-product'>
-        <Form onSubmit={handleSubmit} method='post'>
+        <Form onSubmit={(event) => {(location.state?.edit) ? handleSubmit(event, product) : handleSubmit(event)}} method='post'>
           <Form.Group className='mb-3'>
             <Form.Label>Name</Form.Label>
             <Form.Control onChange={(n) => {setProduct({ ...product, name: n.target.value })}} placeholder='Product name' value={product.name} />
@@ -36,7 +45,7 @@ export default function PublishProduct () {
             <Form.Control type='number' step='1' min='0' onChange={(s) => setProduct({ ...product, stock: parseInt(s.target.value, 10) })} value={product.stock} />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>Publish</Button>
+          <Button variant='primary' type='submit'>{location.state?.edit ? 'Save Changes' : 'Publish'}</Button>
         </Form>
       </div>
     </main>

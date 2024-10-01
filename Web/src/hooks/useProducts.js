@@ -6,6 +6,7 @@ import { UserContext } from '../context/user'
 export function useProducts () {
   const [products, setProducts] = useState([])
   const { getProduct } = useProduct()
+  const navigate = useNavigate()
 
   const loadProducts = async (filtrar) => {
     const allProductsResponse = await fetch(`${API_URL}api/Products`)
@@ -23,6 +24,26 @@ export function useProducts () {
     }))
     
     setProducts(filtrar ? productsList.filter(product => product.stock > 0) : productsList)
+  }
+
+  const updateProduct = async (product) => {
+    const productData = product
+
+    try {
+      const response = await fetch(`${API_URL}api/Products/${product.productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productData)
+      })
+
+      if (response.ok) {
+        navigate('/my-product')
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const updateProductStock = async (productId, stockAdd) => {
@@ -43,7 +64,7 @@ export function useProducts () {
     }
   }
 
-  return { products, setProducts, loadProducts, updateProductStock }
+  return { products, setProducts, loadProducts, updateProductStock, updateProduct }
 }
 
 export function useProduct () {
@@ -78,12 +99,19 @@ export function useProduct () {
 export function usePublishProduct () {
   const [product, setProduct] = useState({ name: '', description: '', imageUrl: '', unitPrice: 0, stock: 0 })
   const { userVal } = useContext(UserContext)
+  const { updateProduct } = useProducts()
 
   const navigate = useNavigate()
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, editProduct = null) => {
     event?.preventDefault()
-    console.log(userVal)
+
+    if (editProduct) {
+      console.log('editar el producto')
+      updateProduct(editProduct)
+      return
+    }
+
     const productData = {
       productId: 0,
       name: product.name,
