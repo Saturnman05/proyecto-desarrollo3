@@ -32,6 +32,14 @@ export function useCart () {
         userId: product.userId
       }))
 
+      for (let product of productsList) {
+        if (product.stock < 1) {
+          console.log(`El producto ${product.name} no tiene stock`)
+          alert(`There is no longer stock of the product ${product.name}`)
+          removeFromCart(null, product.productId)
+        }
+      }
+
       setProducts(productsList)
     } catch (error) {
       console.log('Error: ', error)

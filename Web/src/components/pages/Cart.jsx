@@ -10,16 +10,7 @@ export default function Cart () {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const loadtCartProducts = async () => {
-      await loadUserCartProducts()
-      for (let product of cartProducts) {
-        if (product.stock < 1) {
-          alert(`There is no longer stock of the product ${product.name}`)
-          removeFromCart(null, product.productId)
-        }
-      }
-    }
-    loadtCartProducts()
+    loadUserCartProducts()
   }, [])
 
   return (
