@@ -21,8 +21,6 @@ export function useFactura () {
           productos: [...factura.productos]
         }))
 
-        console.log(allFacturas)
-
         setFacturas(allFacturas.filter(factura => factura.userId === userVal.userId))
       } catch (error) {
         console.log(error)
