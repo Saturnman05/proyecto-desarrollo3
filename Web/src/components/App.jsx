@@ -20,16 +20,16 @@ export default function App () {
       <NavComponent />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path='/' element={<PaginaInicio />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/product/:productId' element={<Product />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/my-product' element={<MyProduct />} />
           <Route path='/bought' element={<BoughtProducts />} />
-          <Route path='/publish-product' element={<PublishProduct />} />
           <Route path='/buy-products' element={<BuyProducts />} />
+          <Route path='/cart' element={<Cart />} />
           <Route path='/factura/:facturaId' element={<FacturaDetail />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/my-product' element={<MyProduct />} />
+          <Route path='/' element={<PaginaInicio />} />
+          <Route path='/product/:productId' element={<Product />} />
+          <Route path='/publish-product' element={<PublishProduct />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </Suspense>
     </Router>
