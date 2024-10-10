@@ -9,7 +9,7 @@ export function useFactura () {
     // Obtener todas las facturas del usuario
     const getFacturaUsuario = async () => {
       try {
-        const response = await fetch(`${API_URL}api/Facturas`)
+        const response = await fetch(`${API_URL}api/Facturas/14`)
         const facturaJson = await response.json()
         
         console.log(facturaJson)
