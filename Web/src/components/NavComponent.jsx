@@ -42,7 +42,7 @@ export default function NavComponent () {
                     <NavDropdown title='Product' id='basic-nav-dropdown'>
                       <NavDropdown.Item as={Link} to='/my-product'>My Products</NavDropdown.Item>
                       <NavDropdown.Item as={Link} to='/publish-product'>Publish Product</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/bought' style={{ color: 'red' }}>Bought</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/bought' style={{ color: 'red' }}>Purchase</NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link as={Link} to='/' onClick={() => logout()}>Log Out</Nav.Link>
                   </>
