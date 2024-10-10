@@ -2,6 +2,7 @@
 using System.Data;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using System.Security.Policy;
 
 namespace ProyectoVentas.Models
 {
@@ -70,6 +71,72 @@ namespace ProyectoVentas.Models
 
                 cmd.Parameters.AddWithValue("pp_factura_id", null);
                 cmd.Parameters.AddWithValue("pp_user_id", null);
+
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                FacturaModel currentFactura = null;
+                int currentFacturaId = -1;
+
+                while (reader.Read())
+                {
+                    int facturaIdFromDb = Convert.ToInt32(reader["factura_id"]);
+
+                    // Si cambiamos de factura o estamos en la primera lectura
+                    if (currentFactura == null || currentFacturaId != facturaIdFromDb)
+                    {
+                        // Añadimos la factura anterior a la lista (si no es la primera lectura)
+                        if (currentFactura != null)
+                        {
+                            facturas.Add(currentFactura);
+                        }
+
+                        // Creamos una nueva factura y actualizamos el ID actual
+                        currentFactura = new FacturaModel
+                        {
+                            FacturaId = facturaIdFromDb,
+                            Rnc = reader["rnc"].ToString(),
+                            EmissionDate = Convert.ToDateTime(reader["emission_date"]),
+                            TotalPrice = Convert.ToDecimal(reader["total_price"]),
+                            UserId = Convert.ToInt32(reader["user_id"]),
+                            Productos = new List<string>()
+                        };
+                        currentFacturaId = facturaIdFromDb;
+                    }
+
+                    // Añadimos el producto a la factura actual
+                    currentFactura.Productos.Add(reader["product_name"].ToString());
+                }
+
+                // Añadimos la última factura leída a la lista
+                if (currentFactura != null)
+                {
+                    facturas.Add(currentFactura);
+                }
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                throw new Exception($"Error al obtener las facturas", ex);
+            }
+
+            con.Close();
+            return facturas;
+        }
+
+        public static List<FacturaModel> GetFacturasByUser(int userId)
+        {
+            List<FacturaModel> facturas = new();
+
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            try
+            {
+                string procedureName = "ppSelectFacturas";
+                using MySqlCommand cmd = new(procedureName, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("pp_factura_id", null);
+                cmd.Parameters.AddWithValue("pp_user_id", userId);
 
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 FacturaModel currentFactura = null;

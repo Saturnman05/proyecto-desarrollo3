@@ -23,6 +23,13 @@ namespace ProyectoVentas.Controllers
             return FacturaModel.GetFactura(id);
         }
 
+        // GET api/<FacturasController>/user/3
+        [HttpGet("user/{id}")]
+        public List<FacturaModel> GetByUser(int id)
+        {
+            return FacturaModel.GetFacturasByUser(id);
+        }
+
         // POST api/<FacturasController>
         [HttpPost]
         public IActionResult Post([FromBody] FacturaModel factura)
