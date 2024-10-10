@@ -6,6 +6,7 @@ import NavComponent from './NavComponent'
 const BoughtProducts = lazy(() => import('./pages/BoughtProducts'))
 const BuyProducts = lazy(() => import('./pages/BuyProducts'))
 const Cart = lazy(() => import('./pages/Cart'))
+const FacturaDetail = lazy(() => import('./pages/FacturaDetail'))
 const Login = lazy(() => import('./pages/Login'))
 const MyProduct = lazy(() => import('./pages/MyProduct'))
 const PaginaInicio = lazy(() => import('./pages/PaginaInicio'))
@@ -28,6 +29,7 @@ export default function App () {
           <Route path='/bought' element={<BoughtProducts />} />
           <Route path='/publish-product' element={<PublishProduct />} />
           <Route path='/buy-products' element={<BuyProducts />} />
+          <Route path='/factura/:facturaId' element={<FacturaDetail />} />
         </Routes>
       </Suspense>
     </Router>
