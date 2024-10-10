@@ -9,10 +9,8 @@ export function useFactura () {
     // Obtener todas las facturas del usuario
     const getFacturaUsuario = async () => {
       try {
-        const response = await fetch(`${API_URL}api/Facturas/14`)
+        const response = await fetch(`${API_URL}api/Facturas`)
         const facturaJson = await response.json()
-        
-        console.log(facturaJson)
         
         const allFacturas = facturaJson?.map(factura => ({
           facturaId: factura.facturaId,
@@ -20,10 +18,12 @@ export function useFactura () {
           emissionDate: factura.emissionDate,
           totalPrice: factura.totalPrice,
           userId: factura.userId,
-          productos: [...factura.productos]  // Asegurarte que los productos se copian correctamente
+          productos: [...factura.productos]
         }))
 
-        setFacturas(allFacturas)
+        console.log(allFacturas)
+
+        setFacturas(allFacturas.filter(factura => factura.userId === userVal.userId))
       } catch (error) {
         console.log(error)
       }

@@ -1,6 +1,5 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
-import { UserContext } from '../../context/user'
 import { useFactura } from '../../hooks/useFactura'
 
 export default function BoughtProducts () {
