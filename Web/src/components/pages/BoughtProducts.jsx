@@ -16,7 +16,7 @@ export default function BoughtProducts () {
       <h1>Purchase History</h1>
       {
         facturas.map(factura => (
-          <div className='factura' onClick={navigate(`factura/${factura.facturaId}`)}>
+          <div className='factura' onClick={() => navigate(`/factura/${factura.facturaId}`)}>
             <hr/>
             <p>Factura no. {factura.facturaId}</p>
             <p>Products Amount: {factura.productos.length}</p>
