@@ -237,6 +237,14 @@ namespace ProyectoVentas.Models
         {
             List<FacturaProductoModel> facturaProducto = new();
 
+            using MySqlConnection con = new(Program.connectionString);
+            con.Open();
+
+            using MySqlCommand cmd = new("ppSelectProductFromFactura", con)
+            {
+                CommandType = CommandType.StoredProcedure,
+            };
+
             return facturaProducto;
         }
 
