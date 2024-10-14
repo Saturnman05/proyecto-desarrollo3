@@ -232,6 +232,14 @@ namespace ProyectoVentas.Models
             return newFacturaId;
         }
 
+        // TODO: GET PRODUCTS FROM FACTURA
+        public static List<FacturaProductoModel> GetProductsFromFactura(int id)
+        {
+            List<FacturaProductoModel> facturaProducto = new();
+
+            return facturaProducto;
+        }
+
         public static List<ProductModel> AddProductosToFactura(MySqlConnection con, MySqlTransaction tran, int facturaId, List<string> productos)
         {
             List<ProductModel> products = new();
@@ -265,8 +273,6 @@ namespace ProyectoVentas.Models
             return products;
         }
 
-
-        // TODO: Update factura
         public static void UpdateFactura(FacturaModel factura)
         {
             using MySqlConnection con = new(Program.connectionString);
@@ -353,7 +359,6 @@ namespace ProyectoVentas.Models
             con.Close();
         }
 
-        // TODO: Calcular el precio de la factura
         public static decimal PrecioTotalFactura(List<string> productos)
         {
             decimal precio = 0;
