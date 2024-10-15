@@ -1,10 +1,14 @@
 import { useContext, useState } from 'react'
 import { UserContext } from '../context/user'
 import { API_URL } from '../constants/constantes'
+import { useProduct } from './useProducts'
 
 export function useFactura () {
   const { userVal } = useContext(UserContext)
   const [facturas, setFacturas] = useState([])
+  const [products, setProducts] = useState([])
+
+  const { getProduct } = useProduct()
 
   const getFacturaUsuario = async () => {
     try {
@@ -43,5 +47,33 @@ export function useFactura () {
     }
   }
 
-  return { facturas, getFacturaUsuario, getFacturaById }
+  const getProductsFromFactura = async (facturaId) => {
+    try {
+      const response = await fetch(`${API_URL}api/Facturas/facturaproduct/${facturaId}`)
+      const productsJson = await response.json()
+
+      const returnProducts = await Promise.all(
+        productsJson.map(async (product) => {
+          const gProduct = await getProduct(product.productId)
+
+          return {
+            productId: product.productId,
+            name: gProduct.name,
+            description: gProduct.description,
+            imageUrl: gProduct.imageUrl,
+            unitPrice: product.productUnitPrice,
+            stock: gProduct.stock,
+            dateCreated: gProduct.dateCreated,
+            userId: gProduct.userId
+          }
+        })
+      )
+
+      setProducts(returnProducts)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return { facturas, getFacturaUsuario, getFacturaById, getProductsFromFactura, products }
 }
