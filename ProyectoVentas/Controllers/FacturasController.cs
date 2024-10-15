@@ -30,7 +30,7 @@ namespace ProyectoVentas.Controllers
             return FacturaModel.GetFacturasByUser(id);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("facturaproduct/{id}")]
         public List<FacturaProductoModel> GetProductsDetail (int id)
         {
             return FacturaModel.GetProductsFromFactura(id);

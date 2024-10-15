@@ -235,17 +235,31 @@ namespace ProyectoVentas.Models
         // TODO: GET PRODUCTS FROM FACTURA
         public static List<FacturaProductoModel> GetProductsFromFactura(int id)
         {
-            List<FacturaProductoModel> facturaProducto = new();
+            List<FacturaProductoModel> facturaProductos = new();
 
             using MySqlConnection con = new(Program.connectionString);
             con.Open();
 
-            using MySqlCommand cmd = new("ppSelectProductFromFactura", con)
+            using MySqlCommand cmd = new("ppSelectProductsFromFactura", con)
             {
                 CommandType = CommandType.StoredProcedure,
             };
+            cmd.Parameters.AddWithValue("pp_factura_id", id);
 
-            return facturaProducto;
+            using MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read()) {
+                FacturaProductoModel fp = new()
+                {
+                    FacturaId = id,
+                    ProductId = Convert.ToInt32(reader["product_id"]),
+                    ProductAmount = Convert.ToInt32(reader["product_amount"]),
+                    ProductUnitPrice = Convert.ToDecimal(reader["product_unit_price"])
+                };
+
+                facturaProductos.Add(fp);
+            }
+
+            return facturaProductos;
         }
 
         public static List<ProductModel> AddProductosToFactura(MySqlConnection con, MySqlTransaction tran, int facturaId, List<string> productos)

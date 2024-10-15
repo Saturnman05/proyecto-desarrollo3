@@ -330,6 +330,32 @@
   },
   {
     "ContainingType": "ProyectoVentas.Controllers.FacturasController",
+    "Method": "GetProductsDetail",
+    "RelativePath": "api/Facturas/facturaproduct/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[ProyectoVentas.Models.FacturaProductoModel, ProyectoVentas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoVentas.Controllers.FacturasController",
     "Method": "GetByUser",
     "RelativePath": "api/Facturas/user/{id}",
     "HttpMethod": "GET",
