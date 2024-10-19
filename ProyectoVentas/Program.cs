@@ -5,7 +5,7 @@ namespace ProyectoVentas
 {
     public class Program
     {
-        public static string connectionString = "Server=mydbserver45.mysql.database.azure.com;Database=core_db;User=fmn;Password=Fran1412;Charset=utf8mb4;";
+        public static string connectionString = Con.conectionString;
 
         public static void Main(string[] args)
         {
