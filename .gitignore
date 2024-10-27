@@ -5,3 +5,5 @@
 *.v7.bin
 
 ProyectoVentas/Con.cs
+
+Web/src/constants/*
