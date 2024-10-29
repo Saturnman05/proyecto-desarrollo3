@@ -10,6 +10,10 @@ import { useLogout } from '../hooks/useLogout'
 export default function NavComponent () {
   const { userVal, logout } = useLogout()
   const [menuMessage, setMenuMessage] = useState(`Menu ${(userVal.userName !== '') ? `de ${userVal.userName}` : ''}`)
+  const [showOffCanvas, setShowOffCanvas] = useState(false)
+
+  const handleClose = () => setShowOffCanvas(false)
+  const handleShow = () => setShowOffCanvas(true)
 
   useEffect(() => {
     setMenuMessage(`Menu ${(userVal.userName) ? `de ${userVal.userName}` : ''}`)
@@ -19,8 +23,10 @@ export default function NavComponent () {
     <Navbar key={'lg'} expand={'lg'} className='bg-body-tertiary mb-3'>
       <Container fluid>
         <Navbar.Brand as={Link} to='/'>CompraNet</Navbar.Brand>
-        <Navbar.Toggle aria-controls='offcanvasNavbar-expand-lg' />
+        <Navbar.Toggle aria-controls='offcanvasNavbar-expand-lg' onClick={handleShow} />
         <Navbar.Offcanvas
+          show={showOffCanvas}
+          onHide={handleClose}
           id='offcanvasNavbar-expand-lg'
           aria-labelledby='offcanvasNavbarLabel-expand-lg'
           placement='end'
@@ -30,26 +36,27 @@ export default function NavComponent () {
               {menuMessage}
             </Offcanvas.Title>
           </Offcanvas.Header>
+
           <Offcanvas.Body>
             <Nav className='justify-content-end flex-grow-1 pe-3'>
-              <Nav.Link as={Link} to='/'><FontAwesomeIcon icon={faHome} /> Home</Nav.Link>
+              <Nav.Link as={Link} to='/' onClick={handleClose}><FontAwesomeIcon icon={faHome} /> Home</Nav.Link>
               {
                 (Number.isInteger(userVal.userId) && userVal.userId > 0) ? (
                   <>
-                    <Nav.Link as={Link} to='/cart'>
+                    <Nav.Link as={Link} to='/cart' onClick={handleClose}>
                       <FontAwesomeIcon icon={faShoppingCart} /> My Cart
                     </Nav.Link>
                     <NavDropdown title='Product' id='basic-nav-dropdown'>
-                      <NavDropdown.Item as={Link} to='/my-product'>My Products</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/publish-product'>Publish Product</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to='/bought'>Purchase</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/my-product' onClick={handleClose}>My Products</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/publish-product' onClick={handleClose}>Publish Product</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to='/bought' onClick={handleClose}>Purchase</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link as={Link} to='/' onClick={() => logout()}>Log Out</Nav.Link>
+                    <Nav.Link as={Link} to='/' onClick={() => {logout(); handleClose()}}>Log Out</Nav.Link>
                   </>
                 ) : (
                   <>
-                    <Nav.Link as={Link} to='/login'>Log In</Nav.Link>
-                    <Nav.Link as={Link} to='/register'>Register</Nav.Link>
+                    <Nav.Link as={Link} to='/login' onClick={handleClose}>Log In</Nav.Link>
+                    <Nav.Link as={Link} to='/register' onClick={handleClose}>Register</Nav.Link>
                   </>
                 )
               }

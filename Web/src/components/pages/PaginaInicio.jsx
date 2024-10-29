@@ -36,7 +36,7 @@ export default function PaginaInicio () {
             ) : (
               <Col>
                 <Card className='h-100 clickable'>
-                  <Card.Img variant="top" src="holder.js/200px280" />
+                  <Card.Img variant="top" src="holder.js/100px180" />
                   
                   <Card.Body className='d-flex flex-column'>
                     <Placeholder as={Card.Title} animation="glow">
