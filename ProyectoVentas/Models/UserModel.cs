@@ -16,7 +16,7 @@ namespace ProyectoVentas.Models
 
         public static List<UserModel> GetAllUsers()
         {
-            List<UserModel> users = new();
+            List<UserModel> users = new(); 
 
             using MySqlConnection con = new(Program.connectionString);
 
