@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\con.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:con.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|c:\\users\\franc\\documents\\proyectodesarrollo3\\proyecto-desarrollo3\\proyectoventas\\proyectoventas.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{E49EA0D3-B633-4966-B46F-1F035868ADAC}|ProyectoVentas.csproj|solutionrelative:proyectoventas.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
@@ -31,19 +27,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Con.cs",
-              "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Con.cs",
-              "RelativeDocumentMoniker": "Con.cs",
-              "ToolTip": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Con.cs",
-              "RelativeToolTip": "Con.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T21:00:17.731Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "ProyectoVentas",
               "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\ProyectoVentas.csproj",
               "RelativeDocumentMoniker": "ProyectoVentas.csproj",
@@ -55,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
@@ -63,12 +46,11 @@
               "RelativeToolTip": "Controllers\\UsersController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T02:10:34.645Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-19T02:10:34.645Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\franc\\Documents\\ProyectoDesarrollo3\\proyecto-desarrollo3\\ProyectoVentas\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",

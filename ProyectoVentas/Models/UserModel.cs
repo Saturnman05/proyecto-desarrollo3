@@ -1,5 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Bcpg;
 
 namespace ProyectoVentas.Models
 {
